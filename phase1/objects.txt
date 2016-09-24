@@ -1,9 +1,0 @@
-user must be either student or admin
-user: username (unique), password
-student: email (unique)
-major: name, department
-department: name
-year: (freshman, sophomore, junior, senior)
-project: name, advisor, description, designation, category, requirements, estimated # students
-course: number, name, instructor, category, requirements, estimated # students
-requirement: major/year/department restriction
