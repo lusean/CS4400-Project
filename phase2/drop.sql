@@ -1,0 +1,1 @@
+drop table if exists CourseCategories, Course, ProjectCategories, StudentProjectApplications, ProjectYearRestriction, ProjectDepartmentRestriction, ProjectMajorRestriction, ApplyStatus, Project, Designation, Category, Student, User, Major, Department, Year;
