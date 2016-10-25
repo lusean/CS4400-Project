@@ -2,8 +2,11 @@
 
 ## MySQL
 
+* `ssh username@academic-mysql.cc.gatech.edu`
+* Enter gatech password
+* `cat README`
 * `mysql -u cs4400_Team_49 -p`
-* Enter password
+* Enter password from `README`
 * `use cs4400_Team_49`
 * `SET storage_engine=INNODB;`
 * `source create.sql`
