@@ -1,1 +1,1 @@
-drop table if exists CourseCategories, Course, ProjectCategories, StudentProjectApplications, ProjectYearRestriction, ProjectDepartmentRestriction, ProjectMajorRestriction, ApplyStatus, Project, Designation, Category, Student, User, Major, Department, Year;
+DROP TABLE IF EXISTS CourseCategories, Course, ProjectCategories, StudentProjectApplications, Project, ApplyStatus, Designation, Category, Student, User, Major, Department, Year;
