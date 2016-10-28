@@ -1,0 +1,13 @@
+DELETE FROM CourseCategories;
+DELETE FROM Course;
+DELETE FROM ProjectCategories;
+DELETE FROM StudentProjectApplications;
+DELETE FROM Project;
+DELETE FROM ApplyStatus;
+DELETE FROM Designation;
+DELETE FROM Category;
+DELETE FROM Student;
+DELETE FROM User;
+DELETE FROM Major;
+DELETE FROM Department;
+DELETE FROM Year;

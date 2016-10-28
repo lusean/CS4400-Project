@@ -1,0 +1,64 @@
+INSERT INTO ApplyStatus VALUES ('Pending');
+INSERT INTO ApplyStatus VALUES ('Accepted');
+INSERT INTO ApplyStatus VALUES ('Rejected');
+
+INSERT INTO Year VALUES ('Freshman');
+INSERT INTO Year VALUES ('Sophomore');
+INSERT INTO Year VALUES ('Junior');
+INSERT INTO Year VALUES ('Senior');
+
+INSERT INTO Department VALUES ('Business');
+INSERT INTO Department VALUES ('Computing');
+INSERT INTO Department VALUES ('Design');
+INSERT INTO Department VALUES ('Engineering');
+INSERT INTO Department VALUES ('Liberal Arts');
+INSERT INTO Department VALUES ('Sciences');
+
+INSERT INTO Major VALUES ('Computational Media', 'Computing');
+INSERT INTO Major VALUES ('Computer Science', 'Computing');
+INSERT INTO Major VALUES ('Architecture', 'Design');
+INSERT INTO Major VALUES ('Industrial Design', 'Design');
+INSERT INTO Major VALUES ('Music Technology', 'Design');
+INSERT INTO Major VALUES ('Aerospace Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Biomedical Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Chemical and Biomolecular Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Civil Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Computer Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Electrical Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Environmental Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Industrial Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Materials Science and Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Mechanical Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Nuclear and Radiological Engineering', 'Engineering');
+INSERT INTO Major VALUES ('Applied Mathematics', 'Sciences');
+INSERT INTO Major VALUES ('Applied Physics', 'Sciences');
+INSERT INTO Major VALUES ('Biochemistry', 'Sciences');
+INSERT INTO Major VALUES ('Biology', 'Sciences');
+INSERT INTO Major VALUES ('Chemistry', 'Sciences');
+INSERT INTO Major VALUES ('Discrete Mathematics', 'Sciences');
+INSERT INTO Major VALUES ('Earth and Atmospheric Sciences', 'Sciences');
+INSERT INTO Major VALUES ('Physics', 'Sciences');
+INSERT INTO Major VALUES ('Psychology', 'Sciences');
+INSERT INTO Major VALUES ('Applied Language and Intercultural Studies', 'Liberal Arts');
+INSERT INTO Major VALUES ('Economics', 'Liberal Arts');
+INSERT INTO Major VALUES ('Economics and International Affairs', 'Liberal Arts');
+INSERT INTO Major VALUES ('Global Economics and Modern Languages', 'Liberal Arts');
+INSERT INTO Major VALUES ('History, Technology, and Society', 'Liberal Arts');
+INSERT INTO Major VALUES ('International Affairs', 'Liberal Arts');
+INSERT INTO Major VALUES ('International Affairs and Modern Languages', 'Liberal Arts');
+INSERT INTO Major VALUES ('Literature, Media, and Communication', 'Liberal Arts');
+INSERT INTO Major VALUES ('Public Policy', 'Liberal Arts');
+INSERT INTO Major VALUES ('Business Administration', 'Business');
+
+INSERT INTO Designation VALUES ('Sustainable Communities');
+INSERT INTO Designation VALUES ('Community');
+
+INSERT INTO Category VALUES ('Computing For Good');
+INSERT INTO Category VALUES ('Doing Good For Your Neighborhood');
+INSERT INTO Category VALUES ('Reciprocal Teaching And Learning');
+INSERT INTO Category VALUES ('Urban Development');
+INSERT INTO Category VALUES ('Adaptive Learning');
+INSERT INTO Category VALUES ('Technology For Social Good');
+INSERT INTO Category VALUES ('Sustainable Communities');
+INSERT INTO Category VALUES ('Crowd-sourced');
+INSERT INTO Category VALUES ('Collaborative Action');
