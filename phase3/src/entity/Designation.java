@@ -13,10 +13,6 @@ public class Designation extends Entity {
     }
     
     public static List<Designation> selectAllDesignation(Connection conn) throws SQLException {
-       return selectDesignationWhere(conn, new WhereClause[]{});
-    }
-    
-    public static List<Designation> selectDesignationWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Designation>) Entity.select(conn, "Designation", Designation::new, wheres);
+        return Entity.select(conn, "SELECT * FROM Designation;", Designation::new);
     }
 }

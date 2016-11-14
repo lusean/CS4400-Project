@@ -1,12 +1,11 @@
 package entity;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class StudentProjectApplications extends InsertableEntity {
+public class StudentProjectApplications extends Entity {
     public String student, project, applyStatus;
     
     public StudentProjectApplications(String student, String project, String applyStatus) {
@@ -22,35 +21,19 @@ public class StudentProjectApplications extends InsertableEntity {
     }
     
     public static List<StudentProjectApplications> selectAllStudentProjectApplications(Connection conn) throws SQLException {
-       return selectStudentProjectApplicationsWhere(conn, new WhereClause[]{});
+        return Entity.select(conn, "SELECT * FROM StudentProjectApplications;", StudentProjectApplications::new);
     }
     
-    public static List<StudentProjectApplications> selectStudentProjectApplicationsWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<StudentProjectApplications>) Entity.select(conn, "StudentProjectApplications", StudentProjectApplications::new, wheres);
-    }
-    
-    @Override
-    public void setPreparedStatement(PreparedStatement ps) throws SQLException {
-        ps.setString(1, student);
-        ps.setString(2, project);
-        ps.setString(3, applyStatus);
-    }
-    
-    @Override
     public void insert(Connection conn) throws SQLException {
-        insert(conn, 3, "StudentProjectApplications");
+        execute(conn, String.format("INSERT INTO StudentProjectApplications VALUES ('%s', '%s', '%s');", student, project, applyStatus));
     }
     
     public void updateStatus(Connection conn, String newStatus) throws SQLException {
         applyStatus = newStatus;
-        PreparedStatement ps = conn.prepareStatement("UPDATE StudentProjectApplications SET ApplyStatus = ? WHERE Student = ? AND Project = ?");
-        ps.setString(1, newStatus);
-        ps.setString(2, student);
-        ps.setString(3, project);
-        ps.executeUpdate();
+        execute(conn, String.format("UPDATE StudentProjectApplications SET ApplyStatus = '%s' WHERE Student = '%s' AND Project = '%s';", applyStatus, student, project));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        deleteAll(conn, "StudentProjectApplications");
+        execute(conn, "DELETE FROM StudentProjectApplications;");
     }
 }

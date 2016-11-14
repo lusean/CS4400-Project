@@ -1,12 +1,11 @@
 package entity;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Project extends InsertableEntity {
+public class Project extends Entity {
     public String projectName, advisorName, advisorEmail, description, designation, majorRestriction, yearRestriction, deptRestriction;
     public int estimatedStudents;
     
@@ -35,32 +34,14 @@ public class Project extends InsertableEntity {
     }
     
     public static List<Project> selectAllProjects(Connection conn) throws SQLException {
-       return selecProjectsWhere(conn, new WhereClause[]{});
+        return Entity.select(conn, "SELECT * FROM Project;", Project::new);
     }
     
-    public static List<Project> selecProjectsWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Project>) Entity.select(conn, "Project", Project::new, wheres);
-    }
-    
-    @Override
-    public void setPreparedStatement(PreparedStatement ps) throws SQLException {
-        ps.setString(1, projectName);
-        ps.setString(2,advisorName );
-        ps.setString(3,advisorEmail );
-        ps.setInt(4, estimatedStudents);
-        ps.setString(5, description);
-        ps.setString(6, designation);
-        ps.setString(7, majorRestriction);
-        ps.setString(8, yearRestriction);
-        ps.setString(9, deptRestriction);
-    }
-    
-    @Override
     public void insert(Connection conn) throws SQLException {
-        insert(conn, 9, "Project");
+        execute(conn, String.format("INSERT INTO Project VALUES ('%s', '%s', '%s', %d, '%s', '%s', %s, %s, %s);", projectName, advisorName, advisorEmail, estimatedStudents, description, designation, majorRestriction == null ? "NULL" : "'" + majorRestriction + "'", yearRestriction == null ? "NULL" : "'" + yearRestriction + "'", deptRestriction == null ? "NULL" : "'" + deptRestriction + "'"));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        deleteAll(conn, "Project");
+        execute(conn, "DELETE FROM Project;");
     }
 }

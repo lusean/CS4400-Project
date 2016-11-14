@@ -1,12 +1,11 @@
 package entity;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Student extends InsertableEntity {
+public class Student extends Entity {
     public String username, email, year, major;
     
     public Student(String username, String email, String year, String major) {
@@ -23,28 +22,25 @@ public class Student extends InsertableEntity {
         this.major = rs.getString(4);
     }
     
+    public void updateYear(Connection conn, String newYear) throws SQLException {
+        year = newYear;
+        execute(conn, String.format("UPDATE StudentProjectApplications SET Year = '%s' WHERE Username = '%s';", year, username));
+    }
+    
+    public void updateMajor(Connection conn, String newMajor) throws SQLException {
+        major = newMajor;
+        execute(conn, String.format("UPDATE StudentProjectApplications SET Major = '%s' WHERE Username = '%s';", year, major));
+    }
+    
     public static List<Student> selectAllStudents(Connection conn) throws SQLException {
-      return  selectStudentsWhere(conn, new WhereClause[]{});
+        return Entity.select(conn, "SELECT * FROM Student;", Student::new);
     }
     
-    public static List<Student> selectStudentsWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Student>) Entity.select(conn, "Student", Student::new, wheres);
-    }
-    
-    @Override
-    public void setPreparedStatement(PreparedStatement ps) throws SQLException {
-        ps.setString(1, username);
-        ps.setString(2, email);
-        ps.setString(3, year);
-        ps.setString(4, major);
-    }
-    
-    @Override
     public void insert(Connection conn) throws SQLException {
-        insert(conn, 4, "Student");
+        execute(conn, String.format("INSERT INTO Student VALUES ('%s', '%s', %s, %s);", username, email, year == null ? "NULL" : "'" + year + "'", major == null ? "NULL" : "'" + major + "'"));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        deleteAll(conn, "Student");
+        execute(conn, "DELETE FROM Student;");
     }
 }

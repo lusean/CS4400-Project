@@ -14,10 +14,6 @@ public class Major extends Entity {
     }
     
     public static List<Major> selectAllMajors(Connection conn) throws SQLException {
-       return selectMajorsWhere(conn, new WhereClause[]{});
-    }
-    
-    public static List<Major> selectMajorsWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Major>) Entity.select(conn, "Major", Major::new, wheres);
+        return Entity.select(conn, "SELECT * FROM Major;", Major::new);
     }
 }

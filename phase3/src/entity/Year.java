@@ -13,10 +13,6 @@ public class Year extends Entity {
     }
     
     public static List<Year> selectAllYears(Connection conn) throws SQLException {
-       return selectYearsWhere(conn, new WhereClause[]{});
-    }
-    
-    public static List<Year> selectYearsWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Year>) Entity.select(conn, "Year", Year::new, wheres);
+        return Entity.select(conn, "SELECT * FROM Year;", Year::new);
     }
 }

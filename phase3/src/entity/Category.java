@@ -13,10 +13,6 @@ public class Category extends Entity {
     }
     
     public static List<Category> selectAllUsers(Connection conn) throws SQLException {
-        return selectAllUsers(conn, new WhereClause[] {});
-    }
-    
-    public static List<Category> selectAllUsers(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Category>) Entity.select(conn, "Category", Category::new, wheres);
+        return Entity.select(conn, "SELECT * FROM Category;", Category::new);
     }
 }

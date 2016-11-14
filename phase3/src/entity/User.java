@@ -1,12 +1,11 @@
 package entity;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class User extends InsertableEntity {
+public class User extends Entity {
     public String username, password;
     public boolean isAdmin;
     
@@ -23,26 +22,14 @@ public class User extends InsertableEntity {
     }
     
     public static List<User> selectAllUsers(Connection conn) throws SQLException {
-        return selectUsersWhere(conn, new WhereClause[] {});
+        return Entity.select(conn, "SELECT * FROM User;", User::new);
     }
     
-    public static List<User> selectUsersWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<User>) Entity.select(conn, "User", User::new, wheres);
-    }
-    
-    @Override
-    protected void setPreparedStatement(PreparedStatement ps) throws SQLException {
-        ps.setString(1, username);
-        ps.setString(2, password);
-        ps.setBoolean(3, isAdmin);
-    }
-    
-    @Override
     public void insert(Connection conn) throws SQLException {
-        insert(conn, 3, "User");
+        execute(conn, String.format("INSERT INTO User VALUES ('%s', '%s', %d);", username, password, isAdmin ? 1 : 0));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        deleteAll(conn, "User");
+        execute(conn, "DELETE FROM User;");
     }
 }

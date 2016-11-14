@@ -13,10 +13,6 @@ public class ApplyStatus extends Entity {
     }
     
     public static List<ApplyStatus> selectAllUsers(Connection conn) throws SQLException {
-       return selectAllUsers(conn, new WhereClause[]{});
-    }
-    
-    public static List<ApplyStatus> selectAllUsers(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<ApplyStatus>) Entity.select(conn, "ApplyStatus", ApplyStatus::new, wheres);
+        return Entity.select(conn, "SELECT * FROM ApplyStatus;", ApplyStatus::new);
     }
 }

@@ -1,12 +1,11 @@
 package entity;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CourseCategories extends InsertableEntity {
+public class CourseCategories extends Entity {
     public String course, category;
     
     public CourseCategories(String course, String category) {
@@ -20,25 +19,14 @@ public class CourseCategories extends InsertableEntity {
     }
     
     public static List<CourseCategories> selectAllCourseCategories(Connection conn) throws SQLException {
-        return selectCourseCategoriesWhere(conn, new WhereClause[]{});
+        return Entity.select(conn, "SELECT * FROM CourseCategories;", CourseCategories::new);
     }
     
-    public static List<CourseCategories> selectCourseCategoriesWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<CourseCategories>) Entity.select(conn, "CourseCategories", CourseCategories::new, wheres);
-    }
-    
-    @Override
-    public void setPreparedStatement(PreparedStatement ps) throws SQLException {
-        ps.setString(1, course);
-        ps.setString(2, category);
-    }
-    
-    @Override
     public void insert(Connection conn) throws SQLException {
-        insert(conn, 2, "CourseCategories");
+        execute(conn, String.format("INSERT INTO CourseCategories VALUES ('%s', '%s');", course, category));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        deleteAll(conn, "CourseCategories");
+        execute(conn, "DELETE FROM CourseCategories;");
     }
 }

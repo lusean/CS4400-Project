@@ -1,12 +1,11 @@
 package entity;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Course extends InsertableEntity {
+public class Course extends Entity {
     public String courseNumber, courseName, instructor, designation;
     public int estimatedStudent;
     
@@ -27,28 +26,14 @@ public class Course extends InsertableEntity {
     }
     
     public static List<Course> selectAllCourses(Connection conn) throws SQLException {
-       return selectCoursesWhere(conn, new WhereClause[]{});
+        return Entity.select(conn, "SELECT * FROM Course;", Course::new);
     }
     
-    public static List<Course> selectCoursesWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Course>) Entity.select(conn, "Course", Course::new, wheres);
-    }
-    
-    @Override
-    protected void setPreparedStatement(PreparedStatement ps) throws SQLException {
-        ps.setString(1, courseNumber);
-        ps.setString(2, courseName);
-        ps.setString(3, instructor);
-        ps.setInt(4, estimatedStudent);
-        ps.setString(5, designation);
-    }
-    
-    @Override
     public void insert(Connection conn) throws SQLException {
-        insert(conn, 5, "Course");
+        execute(conn, String.format("INSERT INTO Course VALUES ('%s', '%s', '%s', %d, '%s');", courseNumber, courseName, instructor, estimatedStudent, designation));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        deleteAll(conn, "Course");
+        execute(conn, "DELETE FROM Course;");
     }
 }

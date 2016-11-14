@@ -13,10 +13,6 @@ public class Department extends Entity {
     }
     
     public static List<Department> selectAllDepartments(Connection conn) throws SQLException {
-       return selectDepartmentsWhere(conn, new WhereClause[]{});
-    }
-    
-    public static List<Department> selectDepartmentsWhere(Connection conn, WhereClause[] wheres) throws SQLException {
-        return (List<Department>) Entity.select(conn, "Department", Department::new, wheres);
+        return Entity.select(conn, "SELECT * FROM Department;", Department::new);
     }
 }
