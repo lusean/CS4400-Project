@@ -14,6 +14,6 @@ public class Major extends Entity {
     }
     
     public static List<Major> selectAllMajors(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Major;", Major::new);
+        return Entity.select(conn, "SELECT * FROM Majors;", Major::new);
     }
 }

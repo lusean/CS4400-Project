@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS CourseCategories, Course, ProjectCategories, StudentProjectApplications, Project, ApplyStatus, Designation, Category, Student, User, Major, Department, Year;
+DROP TABLE IF EXISTS CourseCategories, Courses, ProjectCategories, StudentProjectApplications, Projects, ApplyStatuses, Designations, Categories, Students, Users, Majors, Departments, Years;

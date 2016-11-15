@@ -5,21 +5,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProjectCategories extends Entity {
+public class ProjectCategory extends Entity {
     public String project, category;
     
-    public ProjectCategories(String project, String category) {
+    public ProjectCategory(String project, String category) {
         this.project = project;
         this.category = category;
     }
     
-    public ProjectCategories(ResultSet rs) throws SQLException {
+    public ProjectCategory(ResultSet rs) throws SQLException {
         this.project = rs.getString(1);
         this.category = rs.getString(2);
     }
     
-    public static List<ProjectCategories> selectAllProjectCategories(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM ProjectCategories;", ProjectCategories::new);
+    public static List<ProjectCategory> selectAllProjectCategories(Connection conn) throws SQLException {
+        return Entity.select(conn, "SELECT * FROM ProjectCategories;", ProjectCategory::new);
     }
     
     public void insert(Connection conn) throws SQLException {

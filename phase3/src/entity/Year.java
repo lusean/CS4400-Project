@@ -13,6 +13,6 @@ public class Year extends Entity {
     }
     
     public static List<Year> selectAllYears(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Year;", Year::new);
+        return Entity.select(conn, "SELECT * FROM Years;", Year::new);
     }
 }

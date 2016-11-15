@@ -1,47 +1,47 @@
-CREATE TABLE Year
+CREATE TABLE Years
  (YearName VARCHAR(100) NOT NULL,
  PRIMARY KEY (YearName) ) ENGINE=InnoDB;
 
-CREATE TABLE Department
+CREATE TABLE Departments
  (DepartmentName VARCHAR(100) NOT NULL,
  PRIMARY KEY (DepartmentName) ) ENGINE=InnoDB;
 
-CREATE TABLE Major
+CREATE TABLE Majors
  (MajorName VARCHAR(100) NOT NULL,
  Department VARCHAR(100) NOT NULL,
  PRIMARY KEY (MajorName),
- FOREIGN KEY (Department) REFERENCES Department(DepartmentName) ) ENGINE=InnoDB;
+ FOREIGN KEY (Department) REFERENCES Departments(DepartmentName) ) ENGINE=InnoDB;
 
-CREATE TABLE User
+CREATE TABLE Users
  (Username VARCHAR(100) NOT NULL,
  Password VARCHAR(100) NOT NULL,
  IsAdmin BOOLEAN NOT NULL,
  PRIMARY KEY (Username) ) ENGINE=InnoDB;
 
-CREATE TABLE Student
+CREATE TABLE Students
  (Username VARCHAR(100) NOT NULL,
  GTEmail VARCHAR(100) NOT NULL,
  Year VARCHAR(100),
  Major VARCHAR(100),
  PRIMARY KEY (Username),
  UNIQUE (GTEmail),
- FOREIGN KEY (Username) REFERENCES User(Username),
- FOREIGN KEY (Year) REFERENCES Year(YearName),
- FOREIGN KEY (Major) REFERENCES Major(MajorName) ) ENGINE=InnoDB;
+ FOREIGN KEY (Username) REFERENCES Users(Username),
+ FOREIGN KEY (Year) REFERENCES Years(YearName),
+ FOREIGN KEY (Major) REFERENCES Majors(MajorName) ) ENGINE=InnoDB;
 
-CREATE TABLE Category
+CREATE TABLE Categories
  (CategoryName VARCHAR(100) NOT NULL,
  PRIMARY KEY (CategoryName) ) ENGINE=InnoDB;
 
-CREATE TABLE Designation
+CREATE TABLE Designations
  (DesignationName VARCHAR(100) NOT NULL,
  PRIMARY KEY (DesignationName) ) ENGINE=InnoDB;
 
-CREATE TABLE ApplyStatus
+CREATE TABLE ApplyStatuses
  (ApplyStatusName VARCHAR(100) NOT NULL,
  PRIMARY KEY (ApplyStatusName) ) ENGINE=InnoDB;
 
-CREATE TABLE Project
+CREATE TABLE Projects
  (ProjectName VARCHAR(100) NOT NULL,
  AdvisorName VARCHAR(100) NOT NULL,
  AdvisorEmail VARCHAR(100) NOT NULL,
@@ -52,28 +52,29 @@ CREATE TABLE Project
  YearRestriction VARCHAR(100),
  DepartmentRestriction VARCHAR(100),
  PRIMARY KEY (ProjectName),
- FOREIGN KEY (Designation) REFERENCES Designation(DesignationName),
- FOREIGN KEY (MajorRestriction) REFERENCES Major(MajorName),
- FOREIGN KEY (YearRestriction) REFERENCES Year(YearName),
- FOREIGN KEY (DepartmentRestriction) REFERENCES Department(DepartmentName) ) ENGINE=InnoDB;
+ FOREIGN KEY (Designation) REFERENCES Designations(DesignationName),
+ FOREIGN KEY (MajorRestriction) REFERENCES Majors(MajorName),
+ FOREIGN KEY (YearRestriction) REFERENCES Years(YearName),
+ FOREIGN KEY (DepartmentRestriction) REFERENCES Departments(DepartmentName) ) ENGINE=InnoDB;
 
 CREATE TABLE StudentProjectApplications
  (Student VARCHAR(100) NOT NULL,
  Project VARCHAR(100) NOT NULL,
  ApplyStatus VARCHAR(100) NOT NULL,
+ ApplyDate DATE NOT NULL,
  PRIMARY KEY (Student, Project),
- FOREIGN KEY (Student) REFERENCES Student(Username),
- FOREIGN KEY (Project) REFERENCES Project(ProjectName),
- FOREIGN KEY (ApplyStatus) REFERENCES ApplyStatus(ApplyStatusName) ) ENGINE=InnoDB;
+ FOREIGN KEY (Student) REFERENCES Students(Username),
+ FOREIGN KEY (Project) REFERENCES Projects(ProjectName),
+ FOREIGN KEY (ApplyStatus) REFERENCES ApplyStatuses(ApplyStatusName) ) ENGINE=InnoDB;
 
 CREATE TABLE ProjectCategories
  (Project VARCHAR(100) NOT NULL,
  Category VARCHAR(100) NOT NULL,
  PRIMARY KEY (Project, Category),
- FOREIGN KEY (Project) REFERENCES Project(ProjectName),
- FOREIGN KEY (Category) REFERENCES Category(CategoryName) ) ENGINE=InnoDB;
+ FOREIGN KEY (Project) REFERENCES Projects(ProjectName),
+ FOREIGN KEY (Category) REFERENCES Categories(CategoryName) ) ENGINE=InnoDB;
 
-CREATE TABLE Course
+CREATE TABLE Courses
  (CourseNumber VARCHAR(100) NOT NULL,
  CourseName VARCHAR(100) NOT NULL,
  Instructor VARCHAR(100) NOT NULL, 
@@ -81,12 +82,12 @@ CREATE TABLE Course
  Designation VARCHAR(100) NOT NULL,
  PRIMARY KEY (CourseNumber),
  UNIQUE (CourseName),
- FOREIGN KEY (Designation) REFERENCES Designation(DesignationName) ) ENGINE=InnoDB;
+ FOREIGN KEY (Designation) REFERENCES Designations(DesignationName) ) ENGINE=InnoDB;
 
 CREATE TABLE CourseCategories
  (Course VARCHAR(100) NOT NULL,
  Category VARCHAR(100) NOT NULL,
  PRIMARY KEY (Course, Category),
- FOREIGN KEY (Course) REFERENCES Course(CourseNumber), 
- FOREIGN KEY (Category) REFERENCES Category(CategoryName) ) ENGINE=InnoDB;
+ FOREIGN KEY (Course) REFERENCES Courses(CourseNumber), 
+ FOREIGN KEY (Category) REFERENCES Categories(CategoryName) ) ENGINE=InnoDB;
 

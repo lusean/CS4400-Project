@@ -13,6 +13,6 @@ public class ApplyStatus extends Entity {
     }
     
     public static List<ApplyStatus> selectAllUsers(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM ApplyStatus;", ApplyStatus::new);
+        return Entity.select(conn, "SELECT * FROM ApplyStatuses;", ApplyStatus::new);
     }
 }

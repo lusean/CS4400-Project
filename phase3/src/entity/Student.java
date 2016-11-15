@@ -24,23 +24,23 @@ public class Student extends Entity {
     
     public void updateYear(Connection conn, String newYear) throws SQLException {
         year = newYear;
-        execute(conn, String.format("UPDATE StudentProjectApplications SET Year = '%s' WHERE Username = '%s';", year, username));
+        execute(conn, String.format("UPDATE Students SET Year = '%s' WHERE Username = '%s';", year, username));
     }
     
     public void updateMajor(Connection conn, String newMajor) throws SQLException {
         major = newMajor;
-        execute(conn, String.format("UPDATE StudentProjectApplications SET Major = '%s' WHERE Username = '%s';", year, major));
+        execute(conn, String.format("UPDATE Students SET Major = '%s' WHERE Username = '%s';", year, major));
     }
     
     public static List<Student> selectAllStudents(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Student;", Student::new);
+        return Entity.select(conn, "SELECT * FROM Students;", Student::new);
     }
     
     public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO Student VALUES ('%s', '%s', %s, %s);", username, email, year == null ? "NULL" : "'" + year + "'", major == null ? "NULL" : "'" + major + "'"));
+        execute(conn, String.format("INSERT INTO Students VALUES ('%s', '%s', %s, %s);", username, email, year == null ? "NULL" : "'" + year + "'", major == null ? "NULL" : "'" + major + "'"));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM Student;");
+        execute(conn, "DELETE FROM Students;");
     }
 }

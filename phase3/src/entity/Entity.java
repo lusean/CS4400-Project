@@ -52,6 +52,9 @@ public abstract class Entity {
     protected static List select(Connection conn, String sql, CreateEntity ce) throws SQLException {
         List<Entity> ret = new ArrayList<>();
         try (Statement statement = conn.createStatement()) {
+            System.out.println("executing sql select:");
+            System.out.println(sql);
+            System.out.println();
             try (ResultSet rs = statement.executeQuery(sql)) {
                 while (rs.next()) {
                     ret.add(ce.createEntity(rs));

@@ -13,6 +13,6 @@ public class Designation extends Entity {
     }
     
     public static List<Designation> selectAllDesignation(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Designation;", Designation::new);
+        return Entity.select(conn, "SELECT * FROM Designations;", Designation::new);
     }
 }

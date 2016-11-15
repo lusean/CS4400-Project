@@ -22,14 +22,14 @@ public class User extends Entity {
     }
     
     public static List<User> selectAllUsers(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM User;", User::new);
+        return Entity.select(conn, "SELECT * FROM Users;", User::new);
     }
     
     public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO User VALUES ('%s', '%s', %d);", username, password, isAdmin ? 1 : 0));
+        execute(conn, String.format("INSERT INTO Users VALUES ('%s', '%s', %d);", username, password, isAdmin ? 1 : 0));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM User;");
+        execute(conn, "DELETE FROM Users;");
     }
 }

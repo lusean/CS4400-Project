@@ -26,14 +26,14 @@ public class Course extends Entity {
     }
     
     public static List<Course> selectAllCourses(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Course;", Course::new);
+        return Entity.select(conn, "SELECT * FROM Courses;", Course::new);
     }
     
     public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO Course VALUES ('%s', '%s', '%s', %d, '%s');", courseNumber, courseName, instructor, estimatedStudent, designation));
+        execute(conn, String.format("INSERT INTO Courses VALUES ('%s', '%s', '%s', %d, '%s');", courseNumber, courseName, instructor, estimatedStudent, designation));
     }
     
     public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM Course;");
+        execute(conn, "DELETE FROM Courses;");
     }
 }

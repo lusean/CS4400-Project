@@ -13,6 +13,6 @@ public class Category extends Entity {
     }
     
     public static List<Category> selectAllUsers(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Category;", Category::new);
+        return Entity.select(conn, "SELECT * FROM Categories;", Category::new);
     }
 }
