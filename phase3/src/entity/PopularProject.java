@@ -1,13 +1,9 @@
 package entity;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by aeubanks on 15/11/16.
- */
 public class PopularProject extends Entity {
     public String project;
     public int numApplicants;

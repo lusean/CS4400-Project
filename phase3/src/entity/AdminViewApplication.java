@@ -1,13 +1,9 @@
 package entity;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by aeubanks on 15/11/16.
- */
 public class AdminViewApplication extends Entity {
     public String projectName, studentMajor, studentYear, applyStatus;
     

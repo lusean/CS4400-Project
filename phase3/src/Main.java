@@ -3,7 +3,6 @@ import entity.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -85,15 +84,11 @@ public class Main {
         
         System.out.println();
         System.out.println("AdminViewApplication:");
-        AdminViewApplication.selectAllAdminViewApplications().forEach(a -> {
-            System.out.printf("%s - %s - %s - %s\n", a.projectName, a.studentMajor, a.studentYear, a.applyStatus);
-        });
+        AdminViewApplication.selectAllAdminViewApplications().forEach(a -> System.out.printf("%s - %s - %s - %s\n", a.projectName, a.studentMajor, a.studentYear, a.applyStatus));
         
         System.out.println();
         System.out.println("Popular Projects:");
-        PopularProject.selectPopularProjects().forEach(p -> {
-            System.out.println(p.project + " " + p.numApplicants);
-        });
+        PopularProject.selectPopularProjects().forEach(p -> System.out.println(p.project + " " + p.numApplicants));
         
         Entity.endSQL();
     }
