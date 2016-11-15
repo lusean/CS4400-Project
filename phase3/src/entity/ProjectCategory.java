@@ -18,15 +18,15 @@ public class ProjectCategory extends Entity {
         this.category = rs.getString(2);
     }
     
-    public static List<ProjectCategory> selectAllProjectCategories(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM ProjectCategories;", ProjectCategory::new);
+    public static List<ProjectCategory> selectAllProjectCategories() throws SQLException {
+        return Entity.select("SELECT * FROM ProjectCategories;", ProjectCategory::new);
     }
     
-    public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO ProjectCategories VALUES ('%s', '%s');", project, category));
+    public void insert() throws SQLException {
+        execute(String.format("INSERT INTO ProjectCategories VALUES ('%s', '%s');", project, category));
     }
     
-    public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM ProjectCategories;");
+    public static void deleteAll() throws SQLException {
+        execute("DELETE FROM ProjectCategories;");
     }
 }

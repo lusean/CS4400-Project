@@ -12,7 +12,7 @@ public class ApplyStatus extends Entity {
         this.name = rs.getString(1);
     }
     
-    public static List<ApplyStatus> selectAllUsers(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM ApplyStatuses;", ApplyStatus::new);
+    public static List<ApplyStatus> selectAllUsers() throws SQLException {
+        return Entity.select("SELECT * FROM ApplyStatuses;", ApplyStatus::new);
     }
 }

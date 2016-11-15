@@ -25,15 +25,15 @@ public class Course extends Entity {
         this.designation = rs.getString(5);
     }
     
-    public static List<Course> selectAllCourses(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Courses;", Course::new);
+    public static List<Course> selectAllCourses() throws SQLException {
+        return Entity.select("SELECT * FROM Courses;", Course::new);
     }
     
-    public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO Courses VALUES ('%s', '%s', '%s', %d, '%s');", courseNumber, courseName, instructor, estimatedStudent, designation));
+    public void insert() throws SQLException {
+        execute(String.format("INSERT INTO Courses VALUES ('%s', '%s', '%s', %d, '%s');", courseNumber, courseName, instructor, estimatedStudent, designation));
     }
     
-    public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM Courses;");
+    public static void deleteAll() throws SQLException {
+        execute("DELETE FROM Courses;");
     }
 }

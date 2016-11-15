@@ -22,8 +22,8 @@ public class PopularProject extends Entity {
         this.numApplicants = rs.getInt(2);
     }
     
-    public static List<PopularProject> selectPopularProjects(Connection conn) throws SQLException {
-        List<PopularProject> ret = Entity.select(conn, "SELECT Project, COUNT(*) AS Cnt FROM StudentProjectApplications GROUP BY Project ORDER BY Cnt DESC LIMIT 10;", PopularProject::new);
+    public static List<PopularProject> selectPopularProjects() throws SQLException {
+        List<PopularProject> ret = Entity.select("SELECT Project, COUNT(*) AS Cnt FROM StudentProjectApplications GROUP BY Project ORDER BY Cnt DESC LIMIT 10;", PopularProject::new);
         // only return top 10
         while (ret.size() > 10) {
             ret.remove(ret.size() - 1);

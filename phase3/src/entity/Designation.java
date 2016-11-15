@@ -12,7 +12,7 @@ public class Designation extends Entity {
         this.name = rs.getString(1);
     }
     
-    public static List<Designation> selectAllDesignation(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Designations;", Designation::new);
+    public static List<Designation> selectAllDesignation() throws SQLException {
+        return Entity.select("SELECT * FROM Designations;", Designation::new);
     }
 }

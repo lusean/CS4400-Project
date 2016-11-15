@@ -33,15 +33,15 @@ public class Project extends Entity {
         this.deptRestriction = rs.getString(9);
     }
     
-    public static List<Project> selectAllProjects(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Projects;", Project::new);
+    public static List<Project> selectAllProjects() throws SQLException {
+        return Entity.select("SELECT * FROM Projects;", Project::new);
     }
     
-    public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO Projects VALUES ('%s', '%s', '%s', %d, '%s', '%s', %s, %s, %s);", projectName, advisorName, advisorEmail, estimatedStudents, description, designation, majorRestriction == null ? "NULL" : "'" + majorRestriction + "'", yearRestriction == null ? "NULL" : "'" + yearRestriction + "'", deptRestriction == null ? "NULL" : "'" + deptRestriction + "'"));
+    public void insert() throws SQLException {
+        execute(String.format("INSERT INTO Projects VALUES ('%s', '%s', '%s', %d, '%s', '%s', %s, %s, %s);", projectName, advisorName, advisorEmail, estimatedStudents, description, designation, majorRestriction == null ? "NULL" : "'" + majorRestriction + "'", yearRestriction == null ? "NULL" : "'" + yearRestriction + "'", deptRestriction == null ? "NULL" : "'" + deptRestriction + "'"));
     }
     
-    public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM Projects;");
+    public static void deleteAll() throws SQLException {
+        execute("DELETE FROM Projects;");
     }
 }

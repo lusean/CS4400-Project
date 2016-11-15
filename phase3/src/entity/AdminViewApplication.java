@@ -25,7 +25,7 @@ public class AdminViewApplication extends Entity {
         this.applyStatus = rs.getString(4);
     }
     
-    public static List<AdminViewApplication> selectAllAdminViewApplications(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT SPA.Project, S.Major, S.Year, SPA.ApplyStatus FROM StudentProjectApplications SPA, Students S WHERE SPA.Student = S.Username;", AdminViewApplication::new);
+    public static List<AdminViewApplication> selectAllAdminViewApplications() throws SQLException {
+        return Entity.select("SELECT SPA.Project, S.Major, S.Year, SPA.ApplyStatus FROM StudentProjectApplications SPA, Students S WHERE SPA.Student = S.Username;", AdminViewApplication::new);
     }
 }

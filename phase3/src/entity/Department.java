@@ -12,7 +12,7 @@ public class Department extends Entity {
         this.name = rs.getString(1);
     }
     
-    public static List<Department> selectAllDepartments(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Departments;", Department::new);
+    public static List<Department> selectAllDepartments() throws SQLException {
+        return Entity.select("SELECT * FROM Departments;", Department::new);
     }
 }

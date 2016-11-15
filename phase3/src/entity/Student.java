@@ -22,25 +22,25 @@ public class Student extends Entity {
         this.major = rs.getString(4);
     }
     
-    public void updateYear(Connection conn, String newYear) throws SQLException {
+    public void updateYear(String newYear) throws SQLException {
         year = newYear;
-        execute(conn, String.format("UPDATE Students SET Year = '%s' WHERE Username = '%s';", year, username));
+        execute(String.format("UPDATE Students SET Year = '%s' WHERE Username = '%s';", year, username));
     }
     
-    public void updateMajor(Connection conn, String newMajor) throws SQLException {
+    public void updateMajor(String newMajor) throws SQLException {
         major = newMajor;
-        execute(conn, String.format("UPDATE Students SET Major = '%s' WHERE Username = '%s';", year, major));
+        execute(String.format("UPDATE Students SET Major = '%s' WHERE Username = '%s';", year, major));
     }
     
-    public static List<Student> selectAllStudents(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Students;", Student::new);
+    public static List<Student> selectAllStudents() throws SQLException {
+        return Entity.select("SELECT * FROM Students;", Student::new);
     }
     
-    public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO Students VALUES ('%s', '%s', %s, %s);", username, email, year == null ? "NULL" : "'" + year + "'", major == null ? "NULL" : "'" + major + "'"));
+    public void insert() throws SQLException {
+        execute(String.format("INSERT INTO Students VALUES ('%s', '%s', %s, %s);", username, email, year == null ? "NULL" : "'" + year + "'", major == null ? "NULL" : "'" + major + "'"));
     }
     
-    public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM Students;");
+    public static void deleteAll() throws SQLException {
+        execute("DELETE FROM Students;");
     }
 }

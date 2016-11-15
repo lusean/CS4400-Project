@@ -18,15 +18,15 @@ public class CourseCategory extends Entity {
         this.category = rs.getString(2);
     }
     
-    public static List<CourseCategory> selectAllCourseCategories(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM CourseCategories;", CourseCategory::new);
+    public static List<CourseCategory> selectAllCourseCategories() throws SQLException {
+        return Entity.select("SELECT * FROM CourseCategories;", CourseCategory::new);
     }
     
-    public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO CourseCategories VALUES ('%s', '%s');", course, category));
+    public void insert() throws SQLException {
+        execute(String.format("INSERT INTO CourseCategories VALUES ('%s', '%s');", course, category));
     }
     
-    public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM CourseCategories;");
+    public static void deleteAll() throws SQLException {
+        execute("DELETE FROM CourseCategories;");
     }
 }

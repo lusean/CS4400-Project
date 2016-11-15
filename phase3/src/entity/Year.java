@@ -12,7 +12,7 @@ public class Year extends Entity {
         this.name = rs.getString(1);
     }
     
-    public static List<Year> selectAllYears(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Years;", Year::new);
+    public static List<Year> selectAllYears() throws SQLException {
+        return Entity.select("SELECT * FROM Years;", Year::new);
     }
 }

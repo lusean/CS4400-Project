@@ -13,7 +13,7 @@ public class Major extends Entity {
         this.department = rs.getString(2);
     }
     
-    public static List<Major> selectAllMajors(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Majors;", Major::new);
+    public static List<Major> selectAllMajors() throws SQLException {
+        return Entity.select("SELECT * FROM Majors;", Major::new);
     }
 }

@@ -12,7 +12,7 @@ public class Category extends Entity {
         this.name = rs.getString(1);
     }
     
-    public static List<Category> selectAllUsers(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Categories;", Category::new);
+    public static List<Category> selectAllUsers() throws SQLException {
+        return Entity.select("SELECT * FROM Categories;", Category::new);
     }
 }

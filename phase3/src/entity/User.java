@@ -21,15 +21,15 @@ public class User extends Entity {
         this.isAdmin = rs.getBoolean(3);
     }
     
-    public static List<User> selectAllUsers(Connection conn) throws SQLException {
-        return Entity.select(conn, "SELECT * FROM Users;", User::new);
+    public static List<User> selectAllUsers() throws SQLException {
+        return Entity.select("SELECT * FROM Users;", User::new);
     }
     
-    public void insert(Connection conn) throws SQLException {
-        execute(conn, String.format("INSERT INTO Users VALUES ('%s', '%s', %d);", username, password, isAdmin ? 1 : 0));
+    public void insert() throws SQLException {
+        execute(String.format("INSERT INTO Users VALUES ('%s', '%s', %d);", username, password, isAdmin ? 1 : 0));
     }
     
-    public static void deleteAll(Connection conn) throws SQLException {
-        execute(conn, "DELETE FROM Users;");
+    public static void deleteAll() throws SQLException {
+        execute("DELETE FROM Users;");
     }
 }

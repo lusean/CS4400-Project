@@ -5,51 +5,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Entity {
+    private static final String DB_URL = "jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_41?allowMultiQueries=true";
+    private static final String USER = "cs4400_Team_41";
+    private static final String PASS = "MNisvl9s";
+    
+    private static Connection conn;
+    
+    public static void initializeSQL() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+    
+    public static void endSQL() {
+        try {
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+    
     protected interface CreateEntity {
         Entity createEntity(ResultSet rs) throws SQLException;
     }
     
-//    public static class WhereClause {
-//        public String column;
-//        public String strVal;
-//        public int intVal;
-//        public boolean boolVal;
-//        public int valType;
-//
-//        public WhereClause(String column, String strVal) {
-//            this.column = column;
-//            this.strVal = strVal;
-//            this.valType = 0;
-//        }
-//
-//        public WhereClause(String column, int intVal) {
-//            this.column = column;
-//            this.intVal = intVal;
-//            this.valType = 1;
-//        }
-//
-//        public WhereClause(String column, boolean boolVal) {
-//            this.column = column;
-//            this.boolVal = boolVal;
-//            this.valType = 2;
-//        }
-//
-//        public void setPreparedStatement(PreparedStatement ps, int idx) throws SQLException {
-//            switch (this.valType) {
-//                case 0:
-//                    ps.setString(idx, strVal);
-//                    break;
-//                case 1:
-//                    ps.setInt(idx, intVal);
-//                    break;
-//                case 2:
-//                    ps.setBoolean(idx, boolVal);
-//                    break;
-//            }
-//        }
-//    }
-    
-    protected static List select(Connection conn, String sql, CreateEntity ce) throws SQLException {
+    protected static List select(String sql, CreateEntity ce) throws SQLException {
         List<Entity> ret = new ArrayList<>();
         try (Statement statement = conn.createStatement()) {
             System.out.println("executing sql select:");
@@ -64,7 +49,7 @@ public abstract class Entity {
         return ret;
     }
 
-    public static void execute(Connection conn, String sql) throws SQLException {
+    public static void execute(String sql) throws SQLException {
         try (Statement s = conn.createStatement()) {
             System.out.println("executing sql:");
             System.out.println(sql);
@@ -72,36 +57,4 @@ public abstract class Entity {
             s.execute(sql);
         }
     }
-    
-//    protected static List select(Connection conn, String tableName, CreateEntity ce, WhereClause[] wheres) throws SQLException {
-//        List<Entity> ret = new ArrayList<>();
-//        String whereStr = null;
-//        for (WhereClause where : wheres) {
-//            if (whereStr == null) {
-//                whereStr = String.format("%s = ?", where.column);
-//            } else {
-//                whereStr += String.format(" AND %s = ?", where.column);
-//            }
-//        }
-//
-//        String sql;
-//        if (whereStr == null) {
-//            sql = String.format("SELECT * FROM %s;", tableName);
-//        } else {
-//            sql = String.format("SELECT * FROM %s WHERE %s;", tableName, whereStr);
-//        }
-//        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-//            for (int i = 0; i < wheres.length; i++) {
-//                wheres[i].setPreparedStatement(ps, i + 1);
-//            }
-////            System.out.println(ps);
-//            try (ResultSet rs = ps.executeQuery()) {
-//                while (rs.next()) {
-//                    ret.add(ce.createEntity(rs));
-//                }
-//            }
-//        }
-//
-//        return ret;
-//    }
 }
