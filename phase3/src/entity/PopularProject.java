@@ -23,11 +23,6 @@ public class PopularProject extends Entity {
     }
     
     public static List<PopularProject> selectPopularProjects() throws SQLException {
-        List<PopularProject> ret = Entity.select("SELECT Project, COUNT(*) AS Cnt FROM StudentProjectApplications GROUP BY Project ORDER BY Cnt DESC LIMIT 10;", PopularProject::new);
-        // only return top 10
-        while (ret.size() > 10) {
-            ret.remove(ret.size() - 1);
-        }
-        return ret;
+        return Entity.select("SELECT Project, COUNT(*) AS Cnt FROM StudentProjectApplications GROUP BY Project ORDER BY Cnt DESC LIMIT 10;", PopularProject::new);
     }
 }
