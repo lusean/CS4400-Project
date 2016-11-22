@@ -173,3 +173,30 @@ INSERT INTO ProjectCategories VALUES ('Solar Decathlon', 'collaborative action')
 INSERT INTO ProjectCategories VALUES ('STEMcomm', 'doing good for your neighborhood');
 INSERT INTO ProjectCategories VALUES ('Big Data Analytics for Public and Private Enterprises', 'crowd-sourced');
 INSERT INTO ProjectCategories VALUES ('Concussion Connect', 'collaborative action');
+
+INSERT INTO Users VALUES('adevadas', 'Lion21', 1);
+INSERT INTO Users VALUES('aeubanks', 'Tiger46', 1);
+INSERT INTO Users VALUES('seanlu','Leopard19', 1);
+INSERT INTO Users VALUES('olliefoo', 'Feline001', 1);
+INSERT INTO Users VALUES('somOne', 'HouseCat107', 1);
+
+INSERT INTO Users VALUES('jcalhoun', 'Golden',0);
+INSERT INTO Users VALUES('jadams', 'Rouge', 0);
+INSERT INTO Users VALUES('tjefferson', 'Vert', 0);
+INSERT INTO Users VALUES('aburr', 'Gray', 0);
+INSERT INTO Users VALUES('gclinton', 'Green',0);
+INSERT INTO Users VALUES('egerry', 'Red',0);
+INSERT INTO Users VALUES('dtompins', 'Black',0);
+INSERT INTO Users VALUES('MartinVanBuren', 'Noir',0);
+INSERT INTO Users VALUES('rMjohnson', 'Gris',0);
+INSERT INTO Users VALUES('JTyler21', 'Grey',0);
+INSERT INTO Users VALUES('GmDallas', 'Jaune', 0);
+INSERT INTO Users VALUES('MFillmore', 'Bleu',0);
+INSERT INTO Users VALUES('wRKing', 'Blue',0);
+INSERT INTO Users VALUES('JohnCB', 'Violet',0);
+INSERT INTO Users VALUES('HanHam', 'Teal',0);
+INSERT INTO Users VALUES('AndrJohn', 'Olive',0);
+INSERT INTO Users VALUES('SchCol', 'Merigold',0);
+INSERT INTO Users VALUES('HenWil', 'White',0);
+INSERT INTO Users VALUES('WilAW', 'Pink',0);
+INSERT INTO Users VALUES('carthur', 'Purple',0);
