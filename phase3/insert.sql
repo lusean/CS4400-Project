@@ -154,3 +154,22 @@ INSERT INTO ProjectCategories VALUES ('Know Your Water Project', 'sustainable co
 INSERT INTO ProjectCategories VALUES ('Know Your Water Project', 'crowd-sourced');
 INSERT INTO ProjectCategories VALUES ('Epic Intentions', 'doing good for your neighborhood');
 INSERT INTO ProjectCategories VALUES ('Epic Intentions', 'collaborative action');
+
+INSERT INTO ProjectCategories VALUES ('Sustainable Aquaponic Systems', 'sustainable communities');
+INSERT INTO ProjectCategories VALUES ('Aquabots: Maritime Robotics', 'technology for social good');
+INSERT INTO ProjectCategories VALUES ('Aquabots: Maritime Robotics', 'collaborative action');
+INSERT INTO ProjectCategories VALUES ('BioBots', 'collaborative action');
+INSERT INTO ProjectCategories VALUES ('BioBots', 'computing for good');
+INSERT INTO ProjectCategories VALUES ('BioBots', 'adaptive learning');
+INSERT INTO ProjectCategories VALUES ('EcoCAR Collegiate Competition Team', 'collaborative action');
+INSERT INTO ProjectCategories VALUES ('EcoCAR Collegiate Competition Team', 'reciporical teaching and learning');
+INSERT INTO ProjectCategories VALUES ('Engineering for Social Innovation', 'crowd-sourced');
+INSERT INTO ProjectCategories VALUES ('Engineering for Social Innovation', 'doing good for your neighborhood');
+INSERT INTO ProjectCategories VALUES ('GTRI Agricultural Robotics', 'sustinable communities');
+INSERT INTO ProjectCategories VALUES ('M.A.R.S: Martian Robotics', 'collaborative action');
+INSERT INTO ProjectCategories VALUES ('Rock Damage Modeling and Energy Geostorage Simulation', 'urban developement');
+INSERT INTO ProjectCategories VALUES ('Solar Decathlon', 'sustainable communities');
+INSERT INTO ProjectCategories VALUES ('Solar Decathlon', 'collaborative action');
+INSERT INTO ProjectCategories VALUES ('STEMcomm', 'doing good for your neighborhood');
+INSERT INTO ProjectCategories VALUES ('Big Data Analytics for Public and Private Enterprises', 'crowd-sourced');
+INSERT INTO ProjectCategories VALUES ('Concussion Connect', 'collaborative action');
