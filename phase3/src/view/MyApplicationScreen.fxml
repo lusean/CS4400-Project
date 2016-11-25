@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="220.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Application">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TableView fx:id="table" layoutX="50.0" layoutY="85.0" prefHeight="300.0" prefWidth="500.0">
+        <columns>
+          <TableColumn fx:id="dateCol" prefWidth="114.0" text="Date" />
+          <TableColumn fx:id="projectCol" prefWidth="285.0" text="Project Name" />
+            <TableColumn fx:id="statusCol" prefWidth="100.0" text="Status" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" layoutX="50.0" layoutY="405.0" mnemonicParsing="false" prefWidth="80.0" text="Back" />
+   </children>
+</AnchorPane>
