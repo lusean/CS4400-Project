@@ -52,6 +52,12 @@ public class MainController extends Application {
         alert.showAndWait();
     }
 
+    public void showOKMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

@@ -7,19 +7,7 @@ import javafx.scene.control.Hyperlink;
 public class AdminStartController {
 
     @FXML
-    private Hyperlink applicationLink;
-
-    @FXML
-    private Hyperlink projectLink;
-
-    @FXML
-    private Hyperlink reportLink;
-
-    @FXML
-    private Hyperlink addProjectLink;
-
-    @FXML
-    private Hyperlink addCourseLink;
+    private Hyperlink applicationLink, projectLink, reportLink, addProjectLink, addCourseLink;
 
     @FXML
     private Button logoutButton;
@@ -41,7 +29,7 @@ public class AdminStartController {
 
     @FXML
     private void handleAddProjectPressed() {
-        MainController.getInstance().changeScene("../view/ApplicationReportScreen.fxml", "Add a Project");
+        MainController.getInstance().changeScene("../view/AddProjectScreen.fxml", "Add a Project");
     }
 
     @FXML

@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PopularProjectController">
    <children>
       <Text layoutX="219.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Project">
          <font>
@@ -21,6 +20,6 @@
           <TableColumn fx:id="numberCol" prefWidth="143.0" text="# of Applicants" />
         </columns>
       </TableView>
-      <Button fx:id="backButton" layoutX="50.0" layoutY="405.0" mnemonicParsing="false" prefWidth="80.0" text="Back" />
+      <Button fx:id="backButton" layoutX="50.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleBackPressed" prefWidth="80.0" text="Back" />
    </children>
 </AnchorPane>

@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddProjectController">
    <children>
       <Text layoutX="194.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Project">
          <font>
@@ -25,8 +24,8 @@
       <Text layoutX="68.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major Requirement" />
       <Text layoutX="68.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Requirement" />
       <Text layoutX="68.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department Requirement" />
-      <Button fx:id="backButton" layoutX="127.0" layoutY="643.0" mnemonicParsing="false" prefWidth="80.0" text="Back" />
-      <Button fx:id="submitButton" layoutX="308.0" layoutY="643.0" mnemonicParsing="false" prefWidth="80.0" text="Submit" />
+      <Button fx:id="backButton" layoutX="127.0" layoutY="643.0" mnemonicParsing="false" onAction="#handleBackPressed" prefWidth="80.0" text="Back" />
+      <Button fx:id="submitButton" layoutX="308.0" layoutY="643.0" mnemonicParsing="false" onAction="#handleSubmitPressed" prefWidth="80.0" text="Submit" />
       <TextField fx:id="nameField" layoutX="194.0" layoutY="88.0" />
       <TextField fx:id="advisorField" layoutX="194.0" layoutY="130.0" />
       <TextField fx:id="emailField" layoutX="194.0" layoutY="173.0" />

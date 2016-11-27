@@ -8,22 +8,13 @@ import javafx.scene.control.TextField;
 public class RegistrationController {
 
     @FXML
-    private TextField usernameField;
+    private TextField usernameField, emailField;
 
     @FXML
-    private TextField emailField;
+    private PasswordField passwordField, confirmField;
 
     @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private PasswordField confirmField;
-
-    @FXML
-    private Button backButton;
-
-    @FXML
-    private Button createButton;
+    private Button backButton, createButton;
 
     @FXML
     private void handleBackPressed() {

@@ -6,24 +6,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MeController">
    <children>
       <Text layoutX="232.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Me">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <Hyperlink fx:id="profileLink" layoutX="206.0" layoutY="132.0" text="Edit Profile">
+      <Hyperlink fx:id="profileLink" layoutX="206.0" layoutY="132.0" onAction="#handleProfilePressed" text="Edit Profile">
          <font>
             <Font size="18.0" />
          </font>
       </Hyperlink>
-      <Hyperlink fx:id="applicationLink" layoutX="189.0" layoutY="207.0" text="My Application">
+      <Hyperlink fx:id="applicationLink" layoutX="189.0" layoutY="207.0" onAction="#handleApplicationPressed" text="My Application">
          <font>
             <Font size="18.0" />
          </font>
       </Hyperlink>
-      <Button fx:id="backButton" layoutX="215.0" layoutY="303.0" mnemonicParsing="false" prefWidth="80.0" text="Back" />
+      <Button fx:id="backButton" layoutX="215.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleBackPressed" prefWidth="80.0" text="Back" />
    </children>
 </AnchorPane>

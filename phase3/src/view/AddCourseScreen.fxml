@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCourseController">
    <children>
       <Text layoutX="179.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Course">
          <font>
@@ -27,7 +26,7 @@
       <TextField fx:id="studentField" layoutX="265.0" layoutY="332.0" />
       <ComboBox fx:id="designationBox" layoutX="227.0" layoutY="239.0" prefWidth="150.0" />
       <ComboBox fx:id="categoryBox" layoutX="227.0" layoutY="282.0" prefWidth="150.0" />
-      <Button fx:id="backButton" layoutX="124.0" layoutY="398.0" mnemonicParsing="false" prefWidth="80.0" text="Back" />
-      <Button fx:id="submitButton" layoutX="299.0" layoutY="398.0" mnemonicParsing="false" prefWidth="80.0" text="Submit" />
+      <Button fx:id="backButton" layoutX="124.0" layoutY="398.0" mnemonicParsing="false" onAction="#handleBackPressed" prefWidth="80.0" text="Back" />
+      <Button fx:id="submitButton" layoutX="299.0" layoutY="398.0" mnemonicParsing="false" onAction="#handleSubmitPressed" prefWidth="80.0" text="Submit" />
    </children>
 </AnchorPane>

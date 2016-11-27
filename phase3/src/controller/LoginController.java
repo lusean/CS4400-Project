@@ -15,14 +15,12 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
-    private Button loginButton;
-
-    @FXML
-    private Button registerButton;
+    private Button loginButton, registerButton;
 
     @FXML
     private void handleLoginPressed() {
-        MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+        //MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+        MainController.getInstance().changeScene("../view/FilterScreen.fxml", "Main Page");
     }
 
     @FXML
