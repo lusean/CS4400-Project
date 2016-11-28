@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -20,14 +22,18 @@ public class AddCourseController {
     @FXML
     private ListView categoryList;
 
+    private ObservableSet categories = FXCollections.observableSet();
+
     @FXML
     private void handleAddCategoryPressed() {
-
+        categories.add(categoryBox.getValue());
+        categoryList.setItems(FXCollections.observableArrayList(categories));
     }
 
     @FXML
     private void handleRemoveCategoryPressed() {
-
+        categories.remove(categoryList.getSelectionModel().getSelectedItem());
+        categoryList.setItems(FXCollections.observableArrayList(categories));
     }
 
     @FXML

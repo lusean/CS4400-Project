@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -23,9 +25,12 @@ public class FilterController {
     @FXML
     private ListView categoryList;
 
+    private ObservableSet categories = FXCollections.observableSet();
+
     @FXML
     private void initialize() {
         typeBox.getItems().addAll("Project", "Course", "Both");
+        categoryBox.getItems().addAll("Project", "Course", "Both");
     }
 
     @FXML
@@ -35,12 +40,14 @@ public class FilterController {
 
     @FXML
     private void handleAddCategoryPressed() {
-
+        categories.add(categoryBox.getValue());
+        categoryList.setItems(FXCollections.observableArrayList(categories));
     }
 
     @FXML
     private void handleRemoveCategoryPressed() {
-
+        categories.remove(categoryList.getSelectionModel().getSelectedItem());
+        categoryList.setItems(FXCollections.observableArrayList(categories));
     }
 
     @FXML
