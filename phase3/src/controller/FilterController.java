@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 public class FilterController {
 
     @FXML
-    private Button meButton, filterButton, resetButton, addButton, removeButton;
+    private Button meButton, filterButton, resetButton, addButton, removeButton, viewButton;
 
     @FXML
     private TextField titleField;
@@ -58,5 +58,10 @@ public class FilterController {
     @FXML
     private void handleResetPressed() {
 
+    }
+
+    @FXML
+    private void handleViewPressed() {
+        MainController.getInstance().changeScene("../view/DetailsScreen.fxml", "Details");
     }
 }
