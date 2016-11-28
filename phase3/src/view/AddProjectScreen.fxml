@@ -2,12 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddProjectController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddProjectController">
    <children>
       <Text layoutX="194.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Project">
          <font>
@@ -19,22 +20,25 @@
       <Text layoutX="70.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor email" />
       <Text layoutX="70.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
       <Text layoutX="68.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
-      <Text layoutX="68.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation" />
-      <Text layoutX="68.0" layoutY="467.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated # of students" />
-      <Text layoutX="68.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major Requirement" />
-      <Text layoutX="68.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Requirement" />
-      <Text layoutX="68.0" layoutY="604.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department Requirement" />
-      <Button fx:id="backButton" layoutX="127.0" layoutY="643.0" mnemonicParsing="false" onAction="#handleBackPressed" prefWidth="80.0" text="Back" />
-      <Button fx:id="submitButton" layoutX="308.0" layoutY="643.0" mnemonicParsing="false" onAction="#handleSubmitPressed" prefWidth="80.0" text="Submit" />
-      <TextField fx:id="nameField" layoutX="194.0" layoutY="88.0" />
-      <TextField fx:id="advisorField" layoutX="194.0" layoutY="130.0" />
-      <TextField fx:id="emailField" layoutX="194.0" layoutY="173.0" />
-      <TextField fx:id="descriptionField" layoutX="196.0" layoutY="222.0" prefHeight="120.0" />
-      <TextField fx:id="studentField" layoutX="233.0" layoutY="446.0" />
-      <ComboBox fx:id="categoryBox" layoutX="250.0" layoutY="357.0" prefWidth="150.0" />
-      <ComboBox fx:id="designationBox" layoutX="250.0" layoutY="402.0" prefWidth="150.0" />
-      <ComboBox fx:id="majorBox" layoutX="250.0" layoutY="491.0" prefWidth="150.0" />
-      <ComboBox fx:id="yearBox" layoutX="252.0" layoutY="536.0" prefWidth="150.0" />
-      <ComboBox fx:id="departmentBox" layoutX="252.0" layoutY="582.0" prefWidth="150.0" />
+      <Text layoutX="73.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation" />
+      <Text layoutX="73.0" layoutY="529.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated # of students" />
+      <Text layoutX="73.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major Requirement" />
+      <Text layoutX="73.0" layoutY="620.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Requirement" />
+      <Text layoutX="73.0" layoutY="666.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department Requirement" />
+      <Button fx:id="backButton" layoutX="132.0" layoutY="705.0" mnemonicParsing="false" onAction="#handleBackPressed" prefWidth="80.0" text="Back" />
+      <Button fx:id="submitButton" layoutX="313.0" layoutY="705.0" mnemonicParsing="false" onAction="#handleSubmitPressed" prefWidth="80.0" text="Submit" />
+      <TextField fx:id="nameField" layoutX="194.0" layoutY="88.0" prefWidth="200.0" />
+      <TextField fx:id="advisorField" layoutX="194.0" layoutY="130.0" prefWidth="200.0" />
+      <TextField fx:id="emailField" layoutX="194.0" layoutY="173.0" prefWidth="200.0" />
+      <TextField fx:id="descriptionField" layoutX="196.0" layoutY="222.0" prefHeight="120.0" prefWidth="200.0" />
+      <TextField fx:id="studentField" layoutX="253.0" layoutY="508.0" prefWidth="200.0" />
+      <ComboBox fx:id="categoryBox" layoutX="194.0" layoutY="357.0" prefWidth="200.0" />
+      <ComboBox fx:id="designationBox" layoutX="255.0" layoutY="464.0" prefWidth="200.0" />
+      <ComboBox fx:id="majorBox" layoutX="255.0" layoutY="553.0" prefWidth="200.0" />
+      <ComboBox fx:id="yearBox" layoutX="257.0" layoutY="598.0" prefWidth="200.0" />
+      <ComboBox fx:id="departmentBox" layoutX="257.0" layoutY="644.0" prefWidth="200.0" />
+      <ListView fx:id="categoryView" layoutX="194.0" layoutY="397.0" prefHeight="50.0" prefWidth="200.0" />
+      <Button fx:id="addButton" layoutX="406.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleAddCategoryPressed" prefWidth="80.0" text="Add" />
+      <Button fx:id="removeButton" layoutX="406.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleRemoveCategoryPressed" prefWidth="80.0" text="Remove" />
    </children>
 </AnchorPane>

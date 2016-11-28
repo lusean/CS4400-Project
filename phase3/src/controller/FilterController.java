@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 public class FilterController {
 
     @FXML
-    private Button meButton, filterButton, resetButton;
+    private Button meButton, filterButton, resetButton, addButton, removeButton;
 
     @FXML
     private TextField titleField;
@@ -21,6 +21,9 @@ public class FilterController {
     private TableColumn nameCol, typeCol;
 
     @FXML
+    private ListView categoryList;
+
+    @FXML
     private void initialize() {
         typeBox.getItems().addAll("Project", "Course", "Both");
     }
@@ -28,6 +31,16 @@ public class FilterController {
     @FXML
     private void handleMePressed() {
         MainController.getInstance().changeScene("../view/MeScreen.fxml", "Me");
+    }
+
+    @FXML
+    private void handleAddCategoryPressed() {
+
+    }
+
+    @FXML
+    private void handleRemoveCategoryPressed() {
+
     }
 
     @FXML
