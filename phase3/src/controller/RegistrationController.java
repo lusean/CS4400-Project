@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sun.applet.Main;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -42,10 +43,17 @@ public class RegistrationController {
     }
 
     private boolean isStudentValid() {
+        if(usernameField.getText().length() == 0 || emailField.getText().length() == 0
+                || passwordField.getText().length() == 0 || confirmField.getText().length() == 0) {
+            MainController.getInstance().showAlertMessage("Please fill out all the required fields");
+            return false;
+        }
+
         try {
             List<User> students = User.selectAllUsers();
             for(User u : students) {
                 if(u.username.equals(usernameField.getText())) {
+                    MainController.getInstance().showAlertMessage("Username already exists");
                     return false;
                 }
             }
@@ -53,6 +61,10 @@ public class RegistrationController {
             MainController.getInstance().showAlertMessage(e.getMessage());
         }
 
+        if(!passwordField.getText().equals(confirmField.getText())) {
+            MainController.getInstance().showAlertMessage("Password must match");
+            return false;
+        }
         return true;
     }
 }
