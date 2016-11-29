@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Student;
+import entity.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -28,8 +29,10 @@ public class RegistrationController {
     @FXML
     private void handleCreatePressed() {
         if(isStudentValid()) {
+            User user = new User(usernameField.getText(), passwordField.getText(), false);
             Student student = new Student(usernameField.getText(), emailField.getText(), null, null);
             try {
+                user.insert();
                 student.insert();
             } catch (SQLException e) {
                 MainController.getInstance().showAlertMessage(e.getMessage());
@@ -40,9 +43,9 @@ public class RegistrationController {
 
     private boolean isStudentValid() {
         try {
-            List<Student> students = Student.selectAllStudents();
-            for(Student s : students) {
-                if(s.username.equals(usernameField.getText())) {
+            List<User> students = User.selectAllUsers();
+            for(User u : students) {
+                if(u.username.equals(usernameField.getText())) {
                     return false;
                 }
             }

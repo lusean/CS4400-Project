@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Student;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ public class MainController extends Application {
 
     private Stage primaryStage;
     private static MainController mainController;
+    private Student student;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -43,6 +45,14 @@ public class MainController extends Application {
 
     public static MainController getInstance() {
         return mainController;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Student getStudent() {
+        return student;
     }
 
     public void showAlertMessage(String message) {
