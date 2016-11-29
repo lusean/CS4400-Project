@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 public class FilterController {
 
     @FXML
-    private Button meButton, filterButton, resetButton, addButton, removeButton, viewButton;
+    private Button meButton, filterButton, resetButton, addButton, removeButton, viewButton, logoutButton;
 
     @FXML
     private TextField titleField;
@@ -63,5 +63,10 @@ public class FilterController {
     @FXML
     private void handleViewPressed() {
         MainController.getInstance().changeScene("../view/DetailsScreen.fxml", "Details");
+    }
+
+    @FXML
+    private void handleLogoutPressed() {
+        MainController.getInstance().changeScene("../view/LoginScreen.fxml", "Login");
     }
 }

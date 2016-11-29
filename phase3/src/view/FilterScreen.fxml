@@ -42,5 +42,6 @@
       <Button fx:id="addButton" layoutX="606.0" layoutY="142.0" mnemonicParsing="false" onAction="#handleAddCategoryPressed" prefWidth="80.0" text="Add" />
       <Button fx:id="removeButton" layoutX="606.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleRemoveCategoryPressed" prefWidth="80.0" text="Remove" />
       <Button fx:id="viewButton" layoutX="317.0" layoutY="605.0" mnemonicParsing="false" onAction="#handleViewPressed" prefWidth="80.0" text="View" />
+      <Button fx:id="logoutButton" layoutX="606.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleLogoutPressed" prefWidth="80.0" text="Log out" />
    </children>
 </AnchorPane>
