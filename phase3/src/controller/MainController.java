@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Entity;
 import entity.Student;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Entity.initializeSQL();
         this.primaryStage = primaryStage;
         changeScene("../view/LoginScreen.fxml", "Login");
         mainController = this;
