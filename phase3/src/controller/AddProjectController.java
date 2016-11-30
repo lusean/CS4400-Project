@@ -21,7 +21,7 @@ public class AddProjectController {
     private TextField nameField, advisorField, emailField, descriptionField, studentField;
 
     @FXML
-    private ComboBox categoryBox, designationBox, majorBox, yearBox, departmentBox;
+    private ComboBox<String> categoryBox, designationBox, majorBox, yearBox, departmentBox;
 
     @FXML
     private ListView categoryList;

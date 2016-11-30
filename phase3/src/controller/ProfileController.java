@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Major;
+import entity.Student;
 import entity.Year;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,10 +19,14 @@ public class ProfileController {
     private TextField departmentField;
 
     @FXML
-    private ComboBox majorBox, yearBox;
+    private ComboBox<String> majorBox, yearBox;
+
+    private Student student;
 
     @FXML
     private void initialize() throws SQLException {
+        student = MainController.getInstance().getStudent();
+
         for(Major m : Major.selectAllMajors()) {
             majorBox.getItems().add(m.name);
         }
@@ -30,6 +35,10 @@ public class ProfileController {
         }
     }
 
+
+    // need to tie departmentField to majorBox
+
+
     @FXML
     private void handleBackPressed() {
         MainController.getInstance().changeScene("../view/MeScreen.fxml", "Me");
@@ -37,6 +46,8 @@ public class ProfileController {
 
     @FXML
     private void handleUpdatePressed() {
+        student.major = majorBox.getSelectionModel().getSelectedItem();
+        student.year = yearBox.getSelectionModel().getSelectedItem();
         MainController.getInstance().showOKMessage("Your profile has been updated.");
         MainController.getInstance().changeScene("../view/MeScreen.fxml", "Me");
     }

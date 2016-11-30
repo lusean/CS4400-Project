@@ -21,7 +21,7 @@ public class AddCourseController {
     private TextField numberField, nameField, instructorField, studentField;
 
     @FXML
-    private ComboBox categoryBox, designationBox;
+    private ComboBox<String> categoryBox, designationBox;
 
     @FXML
     private ListView categoryList;
