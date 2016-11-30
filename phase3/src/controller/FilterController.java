@@ -1,9 +1,15 @@
 package controller;
 
+import entity.Category;
+import entity.Designation;
+import entity.Major;
+import entity.Year;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import java.sql.SQLException;
 
 public class FilterController {
 
@@ -14,7 +20,7 @@ public class FilterController {
     private TextField titleField;
 
     @FXML
-    private ComboBox designationBox, majorBox, yearBox, categoryBox, typeBox;
+    private ComboBox<String> designationBox, majorBox, yearBox, categoryBox, typeBox;
 
     @FXML
     private TableView table;
@@ -28,9 +34,20 @@ public class FilterController {
     private ObservableSet categories = FXCollections.observableSet();
 
     @FXML
-    private void initialize() {
+    private void initialize() throws SQLException {
         typeBox.getItems().addAll("Project", "Course", "Both");
-        categoryBox.getItems().addAll("Project", "Course", "Both");
+        for(Category c : Category.selectAllCategory()) {
+            categoryBox.getItems().add(c.name);
+        }
+        for(Designation d : Designation.selectAllDesignation()) {
+            designationBox.getItems().add(d.name);
+        }
+        for(Major m : Major.selectAllMajors()) {
+            majorBox.getItems().add(m.name);
+        }
+        for(Year y : Year.selectAllYears()) {
+            yearBox.getItems().add(y.name);
+        }
     }
 
     @FXML

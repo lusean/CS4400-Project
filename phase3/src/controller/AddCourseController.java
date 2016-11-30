@@ -1,5 +1,7 @@
 package controller;
 
+import entity.Category;
+import entity.Designation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
@@ -7,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+
+import java.sql.SQLException;
 
 public class AddCourseController {
 
@@ -23,6 +27,16 @@ public class AddCourseController {
     private ListView categoryList;
 
     private ObservableSet categories = FXCollections.observableSet();
+
+    @FXML
+    private void initialize() throws SQLException {
+        for(Category c : Category.selectAllCategory()) {
+            categoryBox.getItems().add(c.name);
+        }
+        for(Designation d : Designation.selectAllDesignation()) {
+            designationBox.getItems().add(d.name);
+        }
+    }
 
     @FXML
     private void handleAddCategoryPressed() {

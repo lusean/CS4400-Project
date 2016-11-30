@@ -2,6 +2,7 @@ package entity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Category extends Entity {
@@ -11,7 +12,8 @@ public class Category extends Entity {
         this.name = rs.getString(1);
     }
     
-    public static List<Category> selectAllUsers() throws SQLException {
+    public static List<Category> selectAllCategory() throws SQLException {
         return Entity.select("SELECT * FROM Categories;", Category::new);
     }
+
 }
