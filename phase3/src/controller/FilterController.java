@@ -79,6 +79,8 @@ public class FilterController {
 
     @FXML
     private void handleViewPressed() {
+        // get the type from the selected entry
+        // if it is a course, set the isCourse variable in MainController to true
         MainController.getInstance().changeScene("../view/DetailsScreen.fxml", "Details");
     }
 

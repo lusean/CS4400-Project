@@ -15,13 +15,25 @@ public class DetailsController {
     private boolean isCourse;
 
     @FXML
+    private void initialize() {
+        if(MainController.getInstance().isCourse()) {
+            applyButton.setVisible(false);
+        }
+    }
+
+    @FXML
     private void handleBackPressed() {
         MainController.getInstance().changeScene("../view/FilterScreen.fxml", "Main Page");
     }
 
     @FXML
     private void handleApplyPressed() {
-        MainController.getInstance().changeScene("../view/FilterScreen.fxml", "Main Page");
+        if(MainController.getInstance().isProfileUpdated()) {
+            MainController.getInstance().changeScene("../view/FilterScreen.fxml", "Main Page");
+        } else {
+            MainController.getInstance().showAlertMessage("Please update your profile to include a year and major");
+        }
+
     }
 }
 

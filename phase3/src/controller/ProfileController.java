@@ -33,6 +33,9 @@ public class ProfileController {
         for(Year y : Year.selectAllYears()) {
             yearBox.getItems().add(y.name);
         }
+
+        majorBox.setValue(student.major);
+        yearBox.setValue(student.year);
     }
 
 

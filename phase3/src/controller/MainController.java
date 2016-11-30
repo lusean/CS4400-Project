@@ -16,6 +16,7 @@ public class MainController extends Application {
     private Stage primaryStage;
     private static MainController mainController;
     private Student student;
+    private boolean isCourse;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -55,6 +56,18 @@ public class MainController extends Application {
 
     public Student getStudent() {
         return student;
+    }
+
+    public void setIsCourse(boolean flag) {
+        isCourse = flag;
+    }
+
+    public boolean isCourse() {
+        return isCourse;
+    }
+
+    public boolean isProfileUpdated() {
+        return student.major != null && student.year != null;
     }
 
     public void showAlertMessage(String message) {
