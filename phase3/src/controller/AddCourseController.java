@@ -1,6 +1,8 @@
 package controller;
 
 import entity.Category;
+import entity.Course;
+import entity.CourseCategory;
 import entity.Designation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
@@ -24,7 +26,7 @@ public class AddCourseController {
     private ComboBox<String> categoryBox, designationBox;
 
     @FXML
-    private ListView categoryList;
+    private ListView<String> categoryList;
 
     private ObservableSet categories = FXCollections.observableSet();
 
@@ -57,7 +59,34 @@ public class AddCourseController {
 
     @FXML
     private void handleSubmitPressed() {
-        MainController.getInstance().showOKMessage("Course Successfully Added.");
-        MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+        if(areFieldsFilled()) {
+            Course course = new Course(numberField.getText(), nameField.getText(), instructorField.getText(),
+                    Integer.parseInt(studentField.getText()), designationBox.getSelectionModel().getSelectedItem());
+            CourseCategory courseCategory;
+            for(String s : categoryList.getItems()) {
+                courseCategory = new CourseCategory(numberField.getText(), s);
+                try {
+                    courseCategory.insert();
+                } catch (SQLException e) {
+                    MainController.getInstance().showAlertMessage(e.getMessage());
+                }
+            }
+
+            try {
+                course.insert();
+                MainController.getInstance().showOKMessage("Course Successfully Added.");
+                MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+            } catch (SQLException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage());
+            }
+        } else {
+            MainController.getInstance().showAlertMessage("Please fill out all of the fields");
+        }
+    }
+
+    private boolean areFieldsFilled() {
+        return (numberField.getText().length() != 0 && nameField.getText().length() != 0
+                && instructorField.getText().length() != 0 && studentField.getText().length() != 0
+                && designationBox.getValue() != null && !categoryList.getItems().isEmpty());
     }
 }

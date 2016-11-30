@@ -24,7 +24,7 @@ public class AddProjectController {
     private ComboBox<String> categoryBox, designationBox, majorBox, yearBox, departmentBox;
 
     @FXML
-    private ListView categoryList;
+    private ListView<String> categoryList;
 
     private ObservableSet categories = FXCollections.observableSet();
 
@@ -66,7 +66,39 @@ public class AddProjectController {
 
     @FXML
     private void handleSubmitPressed() {
-        MainController.getInstance().showOKMessage("Project Successfully Added.");
-        MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+        if(areFieldsFilled()) {
+            Project project = new Project(nameField.getText(), advisorField.getText(), emailField.getText(),
+                    Integer.parseInt(studentField.getText()), descriptionField.getText(),
+                    designationBox.getSelectionModel().getSelectedItem(), majorBox.getSelectionModel().getSelectedItem(),
+                    yearBox.getSelectionModel().getSelectedItem(), departmentBox.getSelectionModel().getSelectedItem());
+            ProjectCategory projectCategory;
+            for(String s : categoryList.getItems()) {
+                projectCategory = new ProjectCategory(nameField.getText(), s);
+                try {
+                    projectCategory.insert();
+                } catch (SQLException e) {
+                    MainController.getInstance().showAlertMessage(e.getMessage());
+                }
+            }
+
+            try {
+                project.insert();
+                MainController.getInstance().showOKMessage("Project Successfully Added.");
+                MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+            } catch (SQLException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage());
+            }
+
+        } else {
+            MainController.getInstance().showAlertMessage("Please fill out all of the fields");
+        }
+
+    }
+
+    private boolean areFieldsFilled() {
+        return (nameField.getText().length() != 0 && advisorField.getText().length() != 0
+                && emailField.getText().length() != 0 && descriptionField.getText().length() != 0
+                && studentField.getText().length() != 0 && designationBox.getValue() != null
+                && !categoryList.getItems().isEmpty());
     }
 }
