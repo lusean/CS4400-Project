@@ -28,7 +28,7 @@ public class Student extends Entity {
     
     public void updateMajor(String newMajor) throws SQLException {
         major = newMajor;
-        execute(String.format("UPDATE Students SET Major = '%s' WHERE Username = '%s';", year, username));
+        execute(String.format("UPDATE Students SET Major = '%s' WHERE Username = '%s';", major, username));
     }
     
     public static List<Student> selectAllStudents() throws SQLException {
