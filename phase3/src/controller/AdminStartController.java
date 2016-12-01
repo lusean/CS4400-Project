@@ -24,7 +24,7 @@ public class AdminStartController {
 
     @FXML
     private void handleViewAppReportsPressed() {
-        MainController.getInstance().changeScene("../view/PopularProjectScreen.fxml", "Application Report");
+        MainController.getInstance().changeScene("../view/ApplicationReportScreen.fxml", "Application Report");
     }
 
     @FXML
