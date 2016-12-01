@@ -21,4 +21,12 @@ public class PopularProject extends Entity {
     public static List<PopularProject> selectPopularProjects() throws SQLException {
         return Entity.select("SELECT Project, COUNT(*) AS Cnt FROM StudentProjectApplications GROUP BY Project ORDER BY Cnt DESC LIMIT 10;", PopularProject::new);
     }
+
+    public String getProject() {
+        return project;
+    }
+
+    public int getNumApplicants() {
+        return numApplicants;
+    }
 }
