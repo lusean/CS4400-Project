@@ -15,4 +15,8 @@ public class Major extends Entity {
     public static List<Major> selectAllMajors() throws SQLException {
         return Entity.select("SELECT * FROM Majors;", Major::new);
     }
+    
+    public static List<Major> selectMajor(String majorName) throws SQLException {
+        return Entity.select(String.format("SELECT * FROM Majors WHERE MajorName = '%s';", majorName), Major::new);
+    }
 }
