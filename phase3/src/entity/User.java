@@ -28,7 +28,4 @@ public class User extends Entity {
         execute(String.format("INSERT INTO Users VALUES ('%s', '%s', %d);", username, password, isAdmin ? 1 : 0));
     }
     
-    public static void deleteAll() throws SQLException {
-        execute("DELETE FROM Users;");
-    }
 }

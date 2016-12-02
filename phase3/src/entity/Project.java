@@ -39,8 +39,4 @@ public class Project extends Entity {
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO Projects VALUES ('%s', '%s', '%s', %d, '%s', '%s', %s, %s, %s);", projectName, advisorName, advisorEmail, estimatedStudents, description, designation, majorRestriction == null ? "NULL" : "'" + majorRestriction + "'", yearRestriction == null ? "NULL" : "'" + yearRestriction + "'", deptRestriction == null ? "NULL" : "'" + deptRestriction + "'"));
     }
-    
-    public static void deleteAll() throws SQLException {
-        execute("DELETE FROM Projects;");
-    }
 }

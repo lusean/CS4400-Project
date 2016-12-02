@@ -24,8 +24,4 @@ public class CourseCategory extends Entity {
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO CourseCategories VALUES ('%s', '%s');", course, category));
     }
-    
-    public static void deleteAll() throws SQLException {
-        execute("DELETE FROM CourseCategories;");
-    }
 }

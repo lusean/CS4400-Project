@@ -1,12 +1,12 @@
-main page (search)
+main page (search) -
 popular project report +
 registration +
 login +
 view course
 view application
-application report
+application report -
 add project +
 add course +
 view/apply project
-my application
+my applications -
 edit profile +

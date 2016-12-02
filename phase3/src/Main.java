@@ -9,32 +9,46 @@ import java.sql.SQLException;
 public class Main {
     
     public static void main(String[] args) throws Exception {
-        testSQL();
+        Entity.initializeSQL();
+        
+        System.out.println("projects:");
+        Project.selectAllProjects().forEach(p -> System.out.println(p.projectName));
+        System.out.println();
+        
+        System.out.println("courses:");
+        Course.selectAllCourses().forEach(c -> System.out.println(c.courseName + ": " + c.courseNumber));
+        System.out.println();
+        
+        System.out.println("both:");
+        SearchProjectsCourses.selectAllProjectsAndCourses("collaborative action", "Community", null, "Junior", "Engineering").forEach(pc -> System.out.println(pc.name + ": " + pc.isProject));
+        
+        Entity.endSQL();
+
+//        testSQL();
     }
     
     private static void testSQL() throws SQLException {
-    
         Entity.initializeSQL();
-    
+        
         executeDrop();
         executeCreate();
 //            executeDelete();
         executeInsert();
-    
+        
         new User("admin1", "p", true).insert();
         new User("admin2", "p", true).insert();
         new User("admin4", "p", true).insert();
         new User("admin5", "p", true).insert();
-    
+        
         new User("user1", "p", false).insert();
         new Student("user1", "e", "Freshman", "Computer Science").insert();
         new User("user2", "p2", false).insert();
         new Student("user2", "e2", "Freshman", "Computer Science").insert();
-    
+        
         System.out.println("all users:");
         User.selectAllUsers().forEach(u -> System.out.println(u.username + " " + u.isAdmin));
         System.out.println();
-    
+        
         new Project("pn", "an", "ae", 2, "d", "Community", null, null, null).insert();
         new Project("pn1", "an", "ae", 2, "d", "Community", null, null, null).insert();
         new Project("pn2", "an", "ae", 2, "d", "Community", null, null, null).insert();
@@ -48,11 +62,11 @@ public class Main {
         new Project("pn0", "an", "ae", 2, "d", "Community", null, null, null).insert();
         new Project("pn00", "an", "ae", 2, "d", "Community", null, null, null).insert();
         new Project("pn01", "an", "ae", 2, "d", "Community", null, null, null).insert();
-    
+        
         System.out.println("all projects:");
         Project.selectAllProjects().forEach(p -> System.out.println(p.projectName));
         System.out.println();
-    
+        
         new StudentProjectApplication("user1", "pn", "Pending", new Date(10909009)).insert();
         new StudentProjectApplication("user1", "pn1", "Pending", new Date(10909009)).insert();
         new StudentProjectApplication("user1", "pn2", "Pending", new Date(10909009)).insert();
@@ -67,7 +81,7 @@ public class Main {
         new StudentProjectApplication("user1", "pn00", "Pending", new Date(10909009)).insert();
         new StudentProjectApplication("user1", "pn01", "Pending", new Date(10909009)).insert();
         new StudentProjectApplication("user2", "pn01", "Pending", new Date(10909009)).insert();
-    
+        
         StudentProjectApplication spa = new StudentProjectApplication("user2", "pn", "Pending", new Date(10909009));
         spa.insert();
         StudentProjectApplication.selectAllStudentProjectApplications().forEach(
@@ -86,15 +100,15 @@ public class Main {
                     System.out.println(s.applyStatus);
                 }
         );
-    
+        
         System.out.println();
         System.out.println("AdminViewApplication:");
         AdminViewApplication.selectAllAdminViewApplications().forEach(a -> System.out.printf("%s - %s - %s - %s\n", a.projectName, a.studentMajor, a.studentYear, a.applyStatus));
-    
+        
         System.out.println();
         System.out.println("Popular Projects:");
         PopularProject.selectPopularProjects().forEach(p -> System.out.println(p.project + " " + p.numApplicants));
-    
+        
         Entity.endSQL();
     }
     

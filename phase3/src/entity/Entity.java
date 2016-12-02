@@ -57,4 +57,8 @@ public abstract class Entity {
             s.execute(sql);
         }
     }
+    
+    protected static String stringOrNull(String str) {
+        return str == null ? "NULL" : ("'" + str + "'");
+    }
 }
