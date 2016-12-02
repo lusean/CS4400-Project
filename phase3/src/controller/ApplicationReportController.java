@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -20,8 +22,15 @@ public class ApplicationReportController {
     @FXML
     private TextField totalField, acceptedField;
 
+    private ObservableList data = FXCollections.observableArrayList();
+
     @FXML
     private void handleBackPressed() {
         MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+    }
+
+    @FXML
+    private void initialize() {
+
     }
 }

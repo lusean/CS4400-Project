@@ -2,6 +2,7 @@ package entity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminViewApplication extends Entity {
@@ -16,12 +17,33 @@ public class AdminViewApplication extends Entity {
     
     public AdminViewApplication(ResultSet rs) throws SQLException {
         this.projectName = rs.getString(1);
-        this.studentMajor =rs.getString(2);
+        this.studentMajor = rs.getString(2);
         this.studentYear = rs.getString(3);
         this.applyStatus = rs.getString(4);
     }
     
     public static List<AdminViewApplication> selectAllAdminViewApplications() throws SQLException {
         return Entity.select("SELECT SPA.Project, S.Major, S.Year, SPA.ApplyStatus FROM StudentProjectApplications SPA, Students S WHERE SPA.Student = S.Username;", AdminViewApplication::new);
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public String getStudentMajor() {
+        return studentMajor;
+    }
+
+    public String getStudentYear() {
+        return studentYear;
+    }
+
+    public String getApplyStatus() {
+        return applyStatus;
+    }
+
+    public void updateApplyStatus(String status) throws SQLException {
+        applyStatus = status;
+        //sql update stuff
     }
 }
