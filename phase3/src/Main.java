@@ -11,16 +11,25 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Entity.initializeSQL();
         
-        System.out.println("projects:");
-        Project.selectAllProjects().forEach(p -> System.out.println(p.projectName));
+        StudentProjectApplication.selectAllStudentProjectApplications().forEach(spa -> {
+            System.out.println(spa.project);
+            System.out.println(spa.student);
+            System.out.println(spa.applyStatus);
+            System.out.println();
+        });
+    
+        System.out.println("report:");
         System.out.println();
-        
-        System.out.println("courses:");
-        Course.selectAllCourses().forEach(c -> System.out.println(c.courseName + ": " + c.courseNumber));
-        System.out.println();
-        
-        System.out.println("both:");
-        SearchProjectsCourses.selectAllProjectsAndCourses("collaborative action", "Community", null, "Junior", "Engineering").forEach(pc -> System.out.println(pc.name + ": " + pc.isProject));
+    
+        ApplicationReport.getApplicationReports().forEach(ar -> {
+            System.out.println(ar.projectName);
+            System.out.println(ar.numApplicants);
+            System.out.println(ar.acceptRate);
+            System.out.println(ar.topMajor1);
+            System.out.println(ar.topMajor2);
+            System.out.println(ar.topMajor3);
+            System.out.println();
+        });
         
         Entity.endSQL();
 
