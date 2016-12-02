@@ -78,7 +78,7 @@ public class ProfileController {
         try {
             List<Major> majors = Major.selectMajor(majorBox.getSelectionModel().getSelectedItem());
             if (majors.size() == 1) {
-                departmentField.setText(majors.get(0).name);
+                departmentField.setText(majors.get(0).department);
             }
         } catch (SQLException ignored) {}
     }
