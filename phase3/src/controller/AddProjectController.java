@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.DepthTest;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.SQLException;
 
@@ -18,7 +15,10 @@ public class AddProjectController {
     private Button backButton, submitButton, addButton, removeButton;
 
     @FXML
-    private TextField nameField, advisorField, emailField, descriptionField, studentField;
+    private TextField nameField, advisorField, emailField, studentField;
+
+    @FXML
+    private TextArea descriptionField;
 
     @FXML
     private ComboBox<String> categoryBox, designationBox, majorBox, yearBox, departmentBox;
@@ -71,6 +71,13 @@ public class AddProjectController {
                     Integer.parseInt(studentField.getText()), descriptionField.getText(),
                     designationBox.getSelectionModel().getSelectedItem(), majorBox.getSelectionModel().getSelectedItem(),
                     yearBox.getSelectionModel().getSelectedItem(), departmentBox.getSelectionModel().getSelectedItem());
+            try {
+                project.insert();
+                MainController.getInstance().showOKMessage("Project Successfully Added.");
+                MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
+            } catch (SQLException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage());
+            }
             ProjectCategory projectCategory;
             for(String s : categoryList.getItems()) {
                 projectCategory = new ProjectCategory(nameField.getText(), s);
@@ -79,14 +86,6 @@ public class AddProjectController {
                 } catch (SQLException e) {
                     MainController.getInstance().showAlertMessage(e.getMessage());
                 }
-            }
-
-            try {
-                project.insert();
-                MainController.getInstance().showOKMessage("Project Successfully Added.");
-                MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
-            } catch (SQLException e) {
-                MainController.getInstance().showAlertMessage(e.getMessage());
             }
 
         } else {

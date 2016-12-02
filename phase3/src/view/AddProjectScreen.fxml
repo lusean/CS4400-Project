@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -30,15 +31,15 @@
       <TextField fx:id="nameField" layoutX="194.0" layoutY="88.0" prefWidth="200.0" />
       <TextField fx:id="advisorField" layoutX="194.0" layoutY="130.0" prefWidth="200.0" />
       <TextField fx:id="emailField" layoutX="194.0" layoutY="173.0" prefWidth="200.0" />
-      <TextField fx:id="descriptionField" layoutX="196.0" layoutY="222.0" prefHeight="120.0" prefWidth="200.0" />
       <TextField fx:id="studentField" layoutX="253.0" layoutY="508.0" prefWidth="200.0" />
       <ComboBox fx:id="categoryBox" layoutX="194.0" layoutY="357.0" prefWidth="200.0" />
       <ComboBox fx:id="designationBox" layoutX="255.0" layoutY="464.0" prefWidth="200.0" />
       <ComboBox fx:id="majorBox" layoutX="255.0" layoutY="553.0" prefWidth="200.0" />
       <ComboBox fx:id="yearBox" layoutX="257.0" layoutY="598.0" prefWidth="200.0" />
       <ComboBox fx:id="departmentBox" layoutX="257.0" layoutY="644.0" prefWidth="200.0" />
-      <ListView fx:id="categoryView" layoutX="194.0" layoutY="397.0" prefHeight="50.0" prefWidth="200.0" />
+      <ListView fx:id="categoryList" layoutX="194.0" layoutY="397.0" prefHeight="50.0" prefWidth="200.0" />
       <Button fx:id="addButton" layoutX="406.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleAddCategoryPressed" prefWidth="80.0" text="Add" />
       <Button fx:id="removeButton" layoutX="406.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleRemoveCategoryPressed" prefWidth="80.0" text="Remove" />
+      <TextArea fx:id="descriptionField" layoutX="194.0" layoutY="222.0" prefHeight="122.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
