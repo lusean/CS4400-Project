@@ -39,4 +39,20 @@ public class StudentProjectApplication extends Entity {
         applyStatus = newStatus;
         execute(String.format("UPDATE StudentProjectApplications SET ApplyStatus = '%s' WHERE Student = '%s' AND Project = '%s';", applyStatus, student, project));
     }
+
+    public Date getApplyDate() {
+        return applyDate;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public String getApplyStatus() {
+        return applyStatus;
+    }
+
+    public String getStudent() {
+        return student;
+    }
 }
