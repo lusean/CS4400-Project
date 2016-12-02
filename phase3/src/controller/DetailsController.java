@@ -6,6 +6,7 @@ import entity.Student;
 import entity.StudentProjectApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sun.applet.Main;
 
@@ -14,7 +15,10 @@ import java.sql.SQLException;
 public class DetailsController {
 
     @FXML
-    private TextField titleField, descriptionField;
+    private TextField titleField;
+
+    @FXML
+    private TextArea descriptionField;
 
     @FXML
     private Button backButton, applyButton;
