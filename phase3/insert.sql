@@ -199,4 +199,25 @@ INSERT INTO Users VALUES('AndrJohn', 'Olive',0);
 INSERT INTO Users VALUES('SchCol', 'Merigold',0);
 INSERT INTO Users VALUES('HenWil', 'White',0);
 INSERT INTO Users VALUES('WilAW', 'Pink',0);
-INSERT INTO Users VALUES('carthur', 'Purple',0);
+INSERT INTO Users VALUES('carthur', 'Purple',0)
+
+INSERT INTO Students VALUES('jcalhoun','jc@gatech.edu', 'Sophomore', NULL);
+INSERT INTO Students VALUES('jadams', 'jadams@gatech.edu', 'Freshman', 'Chemistry');
+INSERT INTO Students VALUES('tjefferson', 'Tom@outlook.com', NULL, NULL);
+INSERT INTO Students VALUES('aburr', 'ab@gmail.com', NULL, 'Applied Mathematics');
+INSERT INTO Students VALUES('gclinton', 'gs32@gmail.com', NULL, NULL);
+INSERT INTO Students VALUES('egerry', 'Reggy@gmail.com', 'Junior', 'Civil Engineering');
+INSERT INTO Students VALUES('dtompins', 'dt@gatech.edu', 'Senior', 'Industrial Design');
+INSERT INTO Students VALUES('MartinVanBuren', 'MartinVB41@outlook.com', NULL, NULL);
+INSERT INTO Students VALUES('wRKing', 'wRKing182@gmail.com', NULL, NULL);
+INSERT INTO Students VALUES('GmDallas', 'GDallas31@gatech.edu', NULL, NULL);
+INSERT INTO Students VALUES('rMjohnson', 'rMJ@gatech.edu', NULL, NULL);
+INSERT INTO Students VALUES('JTyler21', 'JTyler@gatech.edu', NULL, NULL);
+INSERT INTO Students VALUES('MFillmore', 'MFillmore@gatech.edu', 'Sophomore', 'Applied Mathematics');
+INSERT INTO Students VALUES('JohnCB', 'JohnC213@gmail.com', 'Senior', 'History, Technology, and Society');
+INSERT INTO Students VALUES('HanHam', 'Ham@outlook.com', 'Junior', 'Public Policy');
+INSERT INTO Students VALUES('AndrJohn', 'Ajohn@gmail.com', NULL, 'Materials Science and Engineering');
+INSERT INTO Students VALUES('SchCol', 'SC@gatech.edu', 'Sophomore', NULL);
+INSERT INTO Students VALUES('HenWil', 'HenWil@gatech.edu', 'Junior', NULL);
+INSERT INTO Students VALUES('WilAW', 'WilAW@outlook.com', 'Senior', NULL);
+INSERT INTO Students VALUES('carthur', 'cartur@gmail.com', NULL, NULL);
