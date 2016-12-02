@@ -22,13 +22,13 @@ public class Student extends Entity {
     }
     
     public void updateYear(String newYear) throws SQLException {
+        execute(String.format("UPDATE Students SET Year = '%s' WHERE Username = '%s';", newYear, username));
         year = newYear;
-        execute(String.format("UPDATE Students SET Year = '%s' WHERE Username = '%s';", year, username));
     }
     
     public void updateMajor(String newMajor) throws SQLException {
+        execute(String.format("UPDATE Students SET Major = '%s' WHERE Username = '%s';", newMajor, username));
         major = newMajor;
-        execute(String.format("UPDATE Students SET Major = '%s' WHERE Username = '%s';", year, username));
     }
     
     public static List<Student> selectAllStudents() throws SQLException {
@@ -37,6 +37,14 @@ public class Student extends Entity {
     
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO Students VALUES ('%s', '%s', %s, %s);", username, email, year == null ? "NULL" : "'" + year + "'", major == null ? "NULL" : "'" + major + "'"));
+    }
+    
+    public List<Major> getMajor() throws SQLException {
+        return Entity.select(String.format("SELECT Majors.* FROM Majors, Students WHERE Students.Major = Majors.MajorName AND Students.Username = '%s'", username), Major::new);
+    }
+    
+    public List<Department> getDepartment() throws SQLException {
+        return Entity.select(String.format("SELECT Departments.* FROM Departments, Majors, Students WHERE Students.Major = Majors.MajorName AND Majors.Department = Departments.DepartmentName AND Students.Username = '%s'", username), Department::new);
     }
     
     public static void deleteAll() throws SQLException {
