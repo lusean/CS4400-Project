@@ -46,6 +46,6 @@ public class AdminViewApplication extends Entity {
 
     public void updateApplyStatus(String status) throws SQLException {
         applyStatus = status;
-        //sql update stuff
+        execute(String.format("UPDATE StudentProjectApplications SET ApplyStatus = '%s' WHERE Student = '%s' AND Project = '%s';", applyStatus, studentName, projectName));
     }
 }
