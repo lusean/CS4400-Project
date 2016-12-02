@@ -25,7 +25,4 @@ public class ProjectCategory extends Entity {
         execute(String.format("INSERT INTO ProjectCategories VALUES ('%s', '%s');", project, category));
     }
     
-    public static void deleteAll() throws SQLException {
-        execute("DELETE FROM ProjectCategories;");
-    }
 }

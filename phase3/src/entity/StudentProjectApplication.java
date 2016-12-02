@@ -39,8 +39,4 @@ public class StudentProjectApplication extends Entity {
         applyStatus = newStatus;
         execute(String.format("UPDATE StudentProjectApplications SET ApplyStatus = '%s' WHERE Student = '%s' AND Project = '%s';", applyStatus, student, project));
     }
-    
-    public static void deleteAll() throws SQLException {
-        execute("DELETE FROM StudentProjectApplications;");
-    }
 }

@@ -11,6 +11,25 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Entity.initializeSQL();
         
+        System.out.println("projects:");
+        Project.selectAllProjects().forEach(p -> System.out.println(p.projectName));
+        System.out.println();
+        
+        System.out.println("courses:");
+        Course.selectAllCourses().forEach(c -> System.out.println(c.courseName + ": " + c.courseNumber));
+        System.out.println();
+        
+        System.out.println("both:");
+        SearchProjectsCourses.selectAllProjectsAndCourses("collaborative action", "Community", null, "Junior", "Engineering").forEach(pc -> System.out.println(pc.name + ": " + pc.isProject));
+        
+        Entity.endSQL();
+
+//        testSQL();
+    }
+    
+    private static void testSQL() throws SQLException {
+        Entity.initializeSQL();
+        
         executeDrop();
         executeCreate();
 //            executeDelete();
