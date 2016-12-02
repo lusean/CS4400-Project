@@ -81,6 +81,7 @@ public class FilterController {
     private void handleViewPressed() {
         // get the type from the selected entry
         // if it is a course, set the isCourse variable in MainController to true
+        // also set the course or project variable in MainController
         MainController.getInstance().changeScene("../view/DetailsScreen.fxml", "Details");
     }
 

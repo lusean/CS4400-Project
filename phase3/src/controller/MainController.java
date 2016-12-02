@@ -1,6 +1,8 @@
 package controller;
 
+import entity.Course;
 import entity.Entity;
+import entity.Project;
 import entity.Student;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,8 @@ public class MainController extends Application {
     private Stage primaryStage;
     private static MainController mainController;
     private Student student;
+    private Project project;
+    private Course course;
     private boolean isCourse;
 
     @Override
@@ -56,6 +60,22 @@ public class MainController extends Application {
 
     public Student getStudent() {
         return student;
+    }
+
+    public void setProject(Project p) {
+        project = p;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setCourse(Course c) {
+        course = c;
+    }
+
+    public Course getCourse() {
+        return course;
     }
 
     public void setIsCourse(boolean flag) {
