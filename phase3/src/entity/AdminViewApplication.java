@@ -17,7 +17,7 @@ public class AdminViewApplication extends Entity {
     
     public AdminViewApplication(ResultSet rs) throws SQLException {
         this.projectName = rs.getString(1);
-        this.studentMajor =rs.getString(2);
+        this.studentMajor = rs.getString(2);
         this.studentYear = rs.getString(3);
         this.applyStatus = rs.getString(4);
         this.studentName = rs.getString(5);
