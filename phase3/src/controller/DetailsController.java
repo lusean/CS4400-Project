@@ -40,10 +40,6 @@ public class DetailsController {
         } else {
             Project project = MainController.getInstance().getProject();
             titleField.setText(project.projectName);
-            String reqs = getProjectRestrictions(project);
-            descriptionField.setText(String.format("Advisor: '%s'\n Description: '%s'\n Designation: '%s'\n" +
-                    "Category: '%s'\n Requirements: '%s'\n Estimated number of students '%s'", project.advisorName,
-                    project.description, project.designation, reqs, project.estimatedStudents));
         }
     }
 
@@ -69,29 +65,6 @@ public class DetailsController {
         } else {
             MainController.getInstance().showAlertMessage("Please update your profile to include a year and major");
         }
-
-    }
-
-    private String getProjectRestrictions(Project p) {
-        List<String> list = new ArrayList<>();
-        String str = "";
-        list.add(p.majorRestriction);
-        list.add(p.yearRestriction);
-        list.add(p.deptRestriction);
-        int index = 0;
-        for (String s : list) {
-            if (s != null) {
-                str += s;
-                break;
-            }
-            index++;
-        }
-        for (int i = index + 1; i < list.size(); i++) {
-            if (list.get(i) != null) {
-                str += ", " + list.get(i);
-            }
-        }
-        return str;
     }
 }
 
