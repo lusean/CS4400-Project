@@ -30,9 +30,9 @@ public class FilterController {
     private TableColumn nameCol, typeCol;
 
     @FXML
-    private ListView categoryList;
+    private ListView<String> categoryList;
 
-    private ObservableSet categories = FXCollections.observableSet();
+    private ObservableSet<String> categories = FXCollections.observableSet();
 
     @FXML
     private void initialize() throws SQLException {
@@ -77,7 +77,7 @@ public class FilterController {
         try {
             List<SearchProjectsCourses> list = SearchProjectsCourses.selectAllProjectsAndCourses(titleField.getText(),
                     categoryList.getItems(), designationBox.getSelectionModel().getSelectedItem(),
-                    majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem());
+                    majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem(), !"Course".equals(typeBox.getSelectionModel().getSelectedItem()), !"Project".equals(typeBox.getSelectionModel().getSelectedItem()));
             for (SearchProjectsCourses s : list) {
                 filterData.add(s);
             }
