@@ -116,6 +116,8 @@ INSERT INTO CourseCategories VALUES ('CHEM 4740', 'doing good for your neighborh
 INSERT INTO CourseCategories VALUES ('PHIL 3109', 'doing good for your neighborhood');
 INSERT INTO CourseCategories VALUES ('PHIL 3127', 'reciprocal teaching and learning');
 INSERT INTO CourseCategories VALUES ('NRE 4404', 'sustainable communities');
+INSERT INTO CourseCategories VALUES ('EAS 2750', 'doing good for your neighborhood');
+INSERT INTO CourseCategories VALUES ('EAS 2750', 'urban development');
 
 INSERT INTO Projects VALUES ('Excel Peer Support Network', 'Marnie Williams', 'mw@gatech.edu', 60, 'Excel (www.excel.gatech.edu) is a four-year, dual certificate program for students with intellectual and developmental disabilities. The Peer Support Network is designed to provide the individualized support necessary for Excel students to thrive at Georgia Tech.', 'Community', 'Computer Science', 'Senior', NULL);
 INSERT INTO Projects VALUES ('ESW Hydroponics/Urban Farming Project', 'Nicole Kinnard', 'nk@gatech.edu', 7, 'The Hydroponics/Urban Farming Project experiments with different ways to grow produce in urban areas using limited space and water resources. We investigate both soil-based and hydroponic methods of growing in order to find the most efficient, economically viable, and environmentally sustainable way to grow produce in Atlanta.', 'Sustainable Communities', NULL, 'Junior', NULL);
