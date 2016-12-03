@@ -66,7 +66,7 @@ public class SearchProjectsCourses extends Entity {
         
         if (acceptCourses) {
             String sql = String.format(
-                            "INSERT INTO ret SELECT false as IsProject, Courses.CourseName FROM Courses WHERE (%s IS NULL OR Courses.CourseName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, CourseCategories WHERE tmp.Category = CourseCategories.Category AND CourseCategories.Course = Courses.CourseName)) AND (%s IS NULL OR Courses.Designation IS NULL OR %s = Courses.Designation);",
+                            "INSERT INTO ret SELECT false as IsProject, Courses.CourseName FROM Courses WHERE (%s IS NULL OR Courses.CourseName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, CourseCategories WHERE tmp.Category = CourseCategories.Category AND CourseCategories.Course = Courses.CourseNumber)) AND (%s IS NULL OR Courses.Designation IS NULL OR %s = Courses.Designation);",
             
                     titleStr, titleStr,
                     designationStr, designationStr);
