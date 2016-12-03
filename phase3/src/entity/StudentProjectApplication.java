@@ -3,6 +3,7 @@ package entity;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentProjectApplication extends Entity {
@@ -44,7 +45,7 @@ public class StudentProjectApplication extends Entity {
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO StudentProjectApplications VALUES ('%s', '%s', '%s', '%s');", student, project, applyStatus, applyDate));
     }
-    
+
     public void updateStatus(String newStatus) throws SQLException {
         applyStatus = newStatus;
         execute(String.format("UPDATE StudentProjectApplications SET ApplyStatus = '%s' WHERE Student = '%s' AND Project = '%s';", applyStatus, student, project));
@@ -64,5 +65,23 @@ public class StudentProjectApplication extends Entity {
 
     public String getStudent() {
         return student;
+    }
+
+    public static Integer getTotalApps() throws SQLException {
+        List<StudentProjectApplication> list = new ArrayList<>();
+        list = selectAllStudentProjectApplications();
+        return list.size();
+    }
+
+    public static Integer getNumAccepted() throws SQLException {
+        int count = 0;
+        List<StudentProjectApplication> list = new ArrayList<>();
+        list = selectAllStudentProjectApplications();
+        for (StudentProjectApplication spa : list) {
+            if (spa.applyStatus.equalsIgnoreCase("Accepted")) {
+                count++;
+            }
+        }
+        return count;
     }
 }
