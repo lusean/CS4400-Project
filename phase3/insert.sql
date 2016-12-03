@@ -210,7 +210,7 @@ INSERT INTO Users VALUES('carthur', 'Purple',0)
 INSERT INTO Students VALUES('jcalhoun','jc@gatech.edu', 'Sophomore', NULL);
 INSERT INTO Students VALUES('jadams', 'jadams@gatech.edu', 'Freshman', 'Chemistry');
 INSERT INTO Students VALUES('tjefferson', 'Tom@outlook.com', NULL, NULL);
-INSERT INTO Students VALUES('aburr', 'ab@gmail.com', NULL, 'Applied Mathematics');
+INSERT INTO Students VALUES('aburr', 'ab@gmail.com', 'Freshman', 'Applied Mathematics');
 INSERT INTO Students VALUES('gclinton', 'gs32@gmail.com', NULL, NULL);
 INSERT INTO Students VALUES('egerry', 'Reggy@gmail.com', 'Junior', 'Civil Engineering');
 INSERT INTO Students VALUES('dtompins', 'dt@gatech.edu', 'Senior', 'Industrial Design');
