@@ -45,6 +45,8 @@ public class ApplicationReportController {
             for (ApplicationReport ar : ApplicationReport.getApplicationReports()) {
                 data.add(ar);
             }
+            totalField.setText(Integer.toString(StudentProjectApplication.getTotalApplications()));
+            acceptedField.setText(Integer.toString(StudentProjectApplication.getAcceptedApplications()));
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error building data");

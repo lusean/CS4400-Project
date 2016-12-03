@@ -30,7 +30,17 @@ public class StudentProjectApplication extends Entity {
     public static List<StudentProjectApplication> selectStudentProjectApplicationsForStudent(String username) throws SQLException {
         return Entity.select(String.format("SELECT * FROM StudentProjectApplications WHERE Student = '%s';", username), StudentProjectApplication::new);
     }
-    
+
+    public static int getTotalApplications() throws SQLException {
+        List<StudentProjectApplication> list = Entity.select("SELECT * FROM StudentProjectApplications;", StudentProjectApplication::new);
+        return list.size();
+    }
+
+    public static int getAcceptedApplications() throws SQLException {
+        List<StudentProjectApplication> list = Entity.select("SELECT * FROM StudentProjectApplications WHERE ApplyStatus = 'Accepted';", StudentProjectApplication::new);
+        return list.size();
+    }
+
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO StudentProjectApplications VALUES ('%s', '%s', '%s', '%s');", student, project, applyStatus, applyDate));
     }
