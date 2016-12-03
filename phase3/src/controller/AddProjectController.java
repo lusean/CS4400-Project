@@ -67,27 +67,30 @@ public class AddProjectController {
     @FXML
     private void handleSubmitPressed() {
         if(areFieldsFilled()) {
-            Project project = new Project(nameField.getText(), advisorField.getText(), emailField.getText(),
-                    Integer.parseInt(studentField.getText()), descriptionField.getText(),
-                    designationBox.getSelectionModel().getSelectedItem(), majorBox.getSelectionModel().getSelectedItem(),
-                    yearBox.getSelectionModel().getSelectedItem(), departmentBox.getSelectionModel().getSelectedItem());
-            try {
-                project.insert();
-                MainController.getInstance().showOKMessage("Project Successfully Added.");
-                MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
-            } catch (SQLException e) {
-                MainController.getInstance().showAlertMessage(e.getMessage());
-            }
-            ProjectCategory projectCategory;
-            for(String s : categoryList.getItems()) {
-                projectCategory = new ProjectCategory(nameField.getText(), s);
+            if(studentField.getText().matches("\\d+")) {
+                Project project = new Project(nameField.getText(), advisorField.getText(), emailField.getText(),
+                        Integer.parseInt(studentField.getText()), descriptionField.getText(),
+                        designationBox.getSelectionModel().getSelectedItem(), majorBox.getSelectionModel().getSelectedItem(),
+                        yearBox.getSelectionModel().getSelectedItem(), departmentBox.getSelectionModel().getSelectedItem());
                 try {
-                    projectCategory.insert();
+                    project.insert();
+                    MainController.getInstance().showOKMessage("Project Successfully Added.");
+                    MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
                 } catch (SQLException e) {
                     MainController.getInstance().showAlertMessage(e.getMessage());
                 }
+                ProjectCategory projectCategory;
+                for (String s : categoryList.getItems()) {
+                    projectCategory = new ProjectCategory(nameField.getText(), s);
+                    try {
+                        projectCategory.insert();
+                    } catch (SQLException e) {
+                        MainController.getInstance().showAlertMessage(e.getMessage());
+                    }
+                }
+            } else {
+                MainController.getInstance().showAlertMessage("Please enter an integer number");
             }
-
         } else {
             MainController.getInstance().showAlertMessage("Please fill out all of the fields");
         }
