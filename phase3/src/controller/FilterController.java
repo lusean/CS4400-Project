@@ -109,18 +109,22 @@ public class FilterController {
         // if it is a course, set the isCourse variable in MainController to true
         // also set the course or project variable in MainController
         SearchProjectsCourses selected = table.getSelectionModel().getSelectedItem();
-        try {
-            if (selected.isProject) {
-                MainController.getInstance().setIsCourse(false);
-                MainController.getInstance().setProject(Project.getProject(selected.name));
-            } else {
-                MainController.getInstance().setIsCourse(true);
-                MainController.getInstance().setCourse(Course.getCourse(selected.name));
+        if(selected != null) {
+            try {
+                if (selected.isProject) {
+                    MainController.getInstance().setIsCourse(false);
+                    MainController.getInstance().setProject(Project.getProject(selected.name));
+                } else {
+                    MainController.getInstance().setIsCourse(true);
+                    MainController.getInstance().setCourse(Course.getCourse(selected.name));
+                }
+            } catch (SQLException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage());
             }
-        } catch (SQLException e) {
-            MainController.getInstance().showAlertMessage(e.getMessage());
+            MainController.getInstance().changeScene("../view/DetailsScreen.fxml", "Details");
+        } else {
+            MainController.getInstance().showAlertMessage("Please select an entry to view");
         }
-        MainController.getInstance().changeScene("../view/DetailsScreen.fxml", "Details");
     }
     
     @FXML
