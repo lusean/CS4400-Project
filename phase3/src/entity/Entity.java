@@ -59,6 +59,6 @@ public abstract class Entity {
     }
     
     protected static String stringOrNull(String str) {
-        return str == null ? "NULL" : ("'" + str + "'");
+        return str == null || str.isEmpty() ? "NULL" : ("'" + str + "'");
     }
 }

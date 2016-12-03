@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilterController {
@@ -74,9 +75,10 @@ public class FilterController {
     private void handleFilterPressed() {
         ObservableList filterData = FXCollections.observableArrayList();
         try {
-            for (SearchProjectsCourses s : SearchProjectsCourses.selectAllProjectsAndCourses(titleField.getText(),
+            List<SearchProjectsCourses> list = SearchProjectsCourses.selectAllProjectsAndCourses(titleField.getText(),
                     categoryList.getItems(), designationBox.getSelectionModel().getSelectedItem(),
-                    majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem())) {
+                    majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem());
+            for (SearchProjectsCourses s : list) {
                 filterData.add(s);
             }
         } catch (SQLException e) {

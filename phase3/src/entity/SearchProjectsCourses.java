@@ -35,33 +35,43 @@ public class SearchProjectsCourses extends Entity {
             titleFilter = null;
         }
         if (titleFilter != null) {
-            titleFilter = "*" + titleFilter + "*";
+            titleFilter = "%" + titleFilter + "%";
         }
         String titleStr = stringOrNull(titleFilter);
-        String categoryStr = "''";
-//        String categoryStr = "(NULL";
-//        for (String categoryFilter : categoryFilters) {
-//           categoryStr += ", '" + categoryFilter + "'";
-//        }
-//        categoryStr += ")";
         String designationStr = stringOrNull(designationFilter);
         String majorStr = stringOrNull(majorFilter);
         String yearStr = stringOrNull(yearFilter);
         
+        String dropTmpSql = "DROP TABLE IF EXISTS tmp;";
+        Entity.execute(dropTmpSql);
+        String createTmpSql = "CREATE TABLE IF NOT EXISTS tmp (Category varchar(100));";
+        Entity.execute(createTmpSql);
+        
+        {
+            String insertTmpSql = "INSERT INTO tmp VALUES (NULL)";
+            for (String categoryFilter : categoryFilters) {
+                insertTmpSql += ", ('" + categoryFilter + "')";
+            }
+            insertTmpSql += ";";
+            
+            Entity.execute(insertTmpSql);
+        }
+        
         String sql = String.format(
-                "SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (%s IS NULL OR (Projects.ProjectName, %s) IN (SELECT * FROM ProjectCategories)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND ((%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction) OR (%s IS NULL OR Projects.DepartmentRestriction IS NULL OR %s = Projects.DepartmentRestriction)) \n" +
+                "SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, ProjectCategories WHERE tmp.Category = ProjectCategories.Category AND ProjectCategories.Project = Projects.ProjectName)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND (%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction) \n" +
                         "UNION ALL \n" +
-                        "SELECT false as IsProject, Courses.CourseName FROM Courses WHERE (%s IS NULL OR Courses.CourseName LIKE %s) AND (%s IS NULL OR (Courses.CourseNumber, %s) IN (SELECT * FROM CourseCategories)) AND (%s IS NULL OR Courses.Designation IS NULL OR %s = Courses.Designation);",
+                        "SELECT false as IsProject, Courses.CourseName FROM Courses WHERE (%s IS NULL OR Courses.CourseName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, CourseCategories WHERE tmp.Category = CourseCategories.Category AND CourseCategories.Course = Courses.CourseName));",
                 
                 titleStr, titleStr,
-                categoryStr, categoryStr,
                 designationStr, designationStr,
                 yearStr, yearStr,
                 majorStr, majorStr,
                 
                 titleStr, titleStr,
-                categoryStr, categoryStr,
                 designationStr, designationStr);
-        return Entity.select(sql, SearchProjectsCourses::new);
+        
+        List ret = Entity.select(sql, SearchProjectsCourses::new);
+        
+        return ret;
     }
 }
