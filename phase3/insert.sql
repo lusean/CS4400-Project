@@ -173,6 +173,10 @@ INSERT INTO ProjectCategories VALUES ('Solar Decathlon', 'collaborative action')
 INSERT INTO ProjectCategories VALUES ('STEMcomm', 'doing good for your neighborhood');
 INSERT INTO ProjectCategories VALUES ('Big Data Analytics for Public and Private Enterprises', 'crowd-sourced');
 INSERT INTO ProjectCategories VALUES ('Concussion Connect', 'collaborative action');
+INSERT INTO ProjectCategories VALUES ('Bee-Snap', 'adaptive learning');
+INSERT INTO ProjectCategories VALUES ('Bee-Snap', 'crowd-sourced');
+INSERT INTO ProjectCategories VALUES ('Big Data and Quantum Mechanics','reciprocal teaching and learning');
+INSERT INTO ProjectCategories VALUES ('Big Data and Quantum Mechanics', 'collaborative action');
 
 INSERT INTO Users VALUES('adevadas', 'Lion21', 1);
 INSERT INTO Users VALUES('aeubanks', 'Tiger46', 1);
