@@ -60,12 +60,12 @@ public class ProfileController {
         try {
             student.updateMajor(majorBox.getSelectionModel().getSelectedItem());
         } catch (SQLException e) {
-            MainController.getInstance().showAlertMessage(e.getMessage());
+            MainController.getInstance().showAlertMessage("Cannot update major");
         }
         try {
             student.updateYear(yearBox.getSelectionModel().getSelectedItem());
         } catch (SQLException e) {
-            MainController.getInstance().showAlertMessage(e.getMessage());
+            MainController.getInstance().showAlertMessage("Cannot update year");
         }
         MainController.getInstance().showOKMessage("Your profile has been updated.");
         

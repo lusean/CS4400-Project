@@ -119,7 +119,7 @@ public class FilterController {
                     MainController.getInstance().setCourse(Course.getCourse(selected.name));
                 }
             } catch (SQLException e) {
-                MainController.getInstance().showAlertMessage(e.getMessage());
+                MainController.getInstance().showAlertMessage("Invalid project/course");
             }
             MainController.getInstance().changeScene("../view/DetailsScreen.fxml", "Details");
         } else {
