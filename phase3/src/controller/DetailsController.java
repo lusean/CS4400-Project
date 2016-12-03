@@ -43,8 +43,8 @@ public class DetailsController {
             } catch (SQLException e){
                 MainController.getInstance().showAlertMessage(e.getMessage());
             }
-            descriptionField.setText(String.format("Course Name: '%s'\n Instructor: '%s'\n Designation: '%s'\n" +
-                    "Category: '%s'\n Estimated number of students: '%s'", course.courseName, course.instructor,
+            descriptionField.setText(String.format("Course Name: %s\nInstructor: %s\nDesignation: %s\n" +
+                    "Category: %s\nEstimated number of students: %s", course.courseName, course.instructor,
                     course.designation, str, course.estimatedStudent));
         } else {
             Project project = MainController.getInstance().getProject();
@@ -62,8 +62,8 @@ public class DetailsController {
                 MainController.getInstance().showAlertMessage(e.getMessage());
             }
             String blank = "";
-            descriptionField.setText(String.format("Advisor: '%s'\n Description: '%s'\n Designation: '%s'\n" +
-                    "Category: '%s'\n Requirements: '%s'\n Estimated number of students '%s'", project.advisorName,
+            descriptionField.setText(String.format("Advisor: %s\nDescription: %s\nDesignation: %s\n" +
+                    "Category: %s\nRequirements: %s\nEstimated number of students: %s", project.advisorName,
                     project.description, project.designation, str, blank, project.estimatedStudents));
         }
     }
