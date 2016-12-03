@@ -7,6 +7,7 @@ import java.util.List;
 public class SearchProjectsCourses extends Entity {
     public boolean isProject; // true = project, false = course
     public String name;
+    public String type;
     
     public SearchProjectsCourses(boolean isProject, String name) {
         this.isProject = isProject;
