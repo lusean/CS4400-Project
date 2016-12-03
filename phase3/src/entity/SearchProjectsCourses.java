@@ -88,19 +88,6 @@ public class SearchProjectsCourses extends Entity {
             Entity.execute(sql);
         }
         
-//        String sql = String.format(
-//                "SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, ProjectCategories WHERE tmp.Category = ProjectCategories.Category AND ProjectCategories.Project = Projects.ProjectName)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND (%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction) \n" +
-//                        "UNION ALL \n" +
-//                        "SELECT false as IsProject, Courses.CourseName FROM Courses WHERE (%s IS NULL OR Courses.CourseName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, CourseCategories WHERE tmp.Category = CourseCategories.Category AND CourseCategories.Course = Courses.CourseName));",
-//
-//                titleStr, titleStr,
-//                designationStr, designationStr,
-//                yearStr, yearStr,
-//                majorStr, majorStr,
-//
-//                titleStr, titleStr,
-//                designationStr, designationStr);
-        
         return Entity.select("SELECT * FROM ret", SearchProjectsCourses::new);
     }
 }
