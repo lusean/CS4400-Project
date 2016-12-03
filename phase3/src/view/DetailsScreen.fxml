@@ -8,14 +8,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailsController">
    <children>
-      <TextField fx:id="titleField" alignment="CENTER" editable="false" layoutX="126.0" layoutY="29.0">
+      <TextField fx:id="titleField" alignment="CENTER" editable="false" layoutX="50.0" layoutY="29.0" prefWidth="400.0">
          <font>
             <Font size="22.0" />
          </font>
       </TextField>
       <Button fx:id="backButton" layoutX="50.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleBackPressed" prefWidth="80.0" text="Back" />
       <Button fx:id="applyButton" layoutX="370.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleApplyPressed" prefWidth="80.0" text="Apply" />
-      <TextArea fx:id="descriptionField" layoutX="50.0" layoutY="94.0" prefHeight="340.0" prefWidth="400.0">
+      <TextArea fx:id="descriptionField" editable="false" layoutX="50.0" layoutY="94.0" prefHeight="340.0" prefWidth="400.0">
          <font>
             <Font size="18.0" />
          </font></TextArea>

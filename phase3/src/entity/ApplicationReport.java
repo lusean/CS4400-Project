@@ -51,6 +51,13 @@ public class ApplicationReport extends Entity {
     }
 
     public String getTopMajors() {
-        return topMajor1 + " " + topMajor2 + " " + topMajor3;
+        String str = "";
+        String[] array = {topMajor1, topMajor2, topMajor3};
+        for(String s : array) {
+            if(s != null) {
+                str = str + s + ", ";
+            }
+        }
+        return str;
     }
 }
