@@ -52,7 +52,5 @@ public class ApplicationReportController {
             System.out.println("Error building data");
         }
         table.getItems().setAll(data);
-        String totalApps;
-        String acceptedApps;
     }
 }
