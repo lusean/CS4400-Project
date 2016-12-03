@@ -221,3 +221,11 @@ INSERT INTO Students VALUES('SchCol', 'SC@gatech.edu', 'Sophomore', 'Internation
 INSERT INTO Students VALUES('HenWil', 'HenWil@gatech.edu', 'Junior', 'Architecture');
 INSERT INTO Students VALUES('WilAW', 'WilAW@outlook.com', 'Senior', 'Computer Science');
 INSERT INTO Students VALUES('carthur', 'cartur@gmail.com', NULL, 'Biochemistry');
+
+INSERT INTO StudentProjectApplications VALUES ('egerry','Sustainable Aquaponic Systems', 'Accepted', '2013-12-02');
+INSERT INTO StudentProjectApplications VALUES( 'aburr','Epic Intentions','Pending', '2014-01-29');
+INSERT INTO StudentProjectApplications VALUES('dtompins', 'Shakespeare in Prison Project', 'Rejected', '2012- 02- 13');
+INSERT INTO StudentProjectApplications VALUES('dtompins', 'STEMcomm', 'Accepted', '2012-02-13');
+INSERT INTO StudentProjectApplications VALUES('WilAW','Big Data and Quantum Mechanics', 'Accepted', '2013-05-12');
+INSERT INTO StudentProjectApplications VALUES('HanHam', 'Concussion Connect', 'Pending', '2015-11-03');
+INSERT INTO StudentProjectApplications VALUES('HanHam','STEMcomm',  'Rejected','2015-10-13');
