@@ -50,8 +50,8 @@ public class FilterController {
             yearBox.getItems().add(y.name);
         }
 
-        nameCol.setCellFactory(new PropertyValueFactory<SearchProjectsCourses, String>("name"));
-        typeCol.setCellFactory(new PropertyValueFactory<SearchProjectsCourses, String>("isProject"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<SearchProjectsCourses, String>("name"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<SearchProjectsCourses, String>("isProject"));
     }
 
     @FXML
