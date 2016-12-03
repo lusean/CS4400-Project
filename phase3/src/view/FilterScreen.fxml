@@ -18,8 +18,8 @@
          </font>
       </Text>
       <Button fx:id="meButton" layoutX="19.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleMePressed" prefHeight="50.0" prefWidth="50.0" text="Me" />
-      <Button fx:id="filterButton" layoutX="455.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleFilterPressed" text="Apply Filter" />
-      <Button fx:id="resetButton" layoutX="570.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleResetPressed" text="Reset Filter" />
+      <Button fx:id="filterButton" layoutX="495.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleFilterPressed" prefWidth="80.0" text="Search" />
+      <Button fx:id="resetButton" layoutX="583.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleResetPressed" prefWidth="80.0" text="Clear" />
       <Text layoutX="40.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
       <Text layoutX="15.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation" />
       <Text layoutX="35.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major" />
