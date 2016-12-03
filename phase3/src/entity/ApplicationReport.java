@@ -58,6 +58,7 @@ public class ApplicationReport extends Entity {
                 str = str + s + ", ";
             }
         }
+        str = str.substring(0, str.length()-2);
         return str;
     }
 }
