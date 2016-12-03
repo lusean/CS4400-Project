@@ -37,7 +37,7 @@ public class MyApplicationController {
         projectCol.setCellValueFactory(new PropertyValueFactory<Student, Integer>("project"));
         statusCol.setCellValueFactory(new PropertyValueFactory<StudentProjectApplication, String>("applyStatus"));
         try {
-            String stu = MainController.getInstance().getStudent().getUsername();
+            String stu = MainController.getInstance().getStudent().username;
             for (StudentProjectApplication spa : StudentProjectApplication.selectStudentProjectApplicationsForStudent(stu)) {
                 data.add(spa);
             }
