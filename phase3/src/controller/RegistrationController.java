@@ -10,6 +10,8 @@ import sun.applet.Main;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrationController {
 
@@ -21,6 +23,9 @@ public class RegistrationController {
 
     @FXML
     private Button backButton, createButton;
+
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     @FXML
     private void handleBackPressed() {
@@ -49,6 +54,12 @@ public class RegistrationController {
             return false;
         }
 
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailField.getText());
+        if(!matcher.find()) {
+            MainController.getInstance().showAlertMessage("Please enter a valid email");
+            return false;
+        }
+
         try {
             List<User> students = User.selectAllUsers();
             for(User u : students) {
@@ -65,6 +76,7 @@ public class RegistrationController {
             MainController.getInstance().showAlertMessage("Password must match");
             return false;
         }
+
         return true;
     }
 }
