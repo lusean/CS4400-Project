@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import sun.applet.Main;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsController {
@@ -26,7 +24,7 @@ public class DetailsController {
 
     @FXML
     private void initialize() {
-        if(MainController.getInstance().isCourse()) {
+        if (MainController.getInstance().isCourse()) {
             applyButton.setVisible(false);
             Course course = MainController.getInstance().getCourse();
             titleField.setText(course.courseNumber);
@@ -40,7 +38,7 @@ public class DetailsController {
                     }
                     cat += list.get(i).category;
                 }
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 MainController.getInstance().showAlertMessage(e.getMessage());
             }
             descriptionField.setText(String.format("Course Name: '%s'\n Instructor: '%s'\n Designation: '%s'\n" +
@@ -70,15 +68,43 @@ public class DetailsController {
 
     @FXML
     private void handleApplyPressed() {
-        if(MainController.getInstance().isProfileUpdated()) {
+        if (MainController.getInstance().isProfileUpdated()) {
             Student student = MainController.getInstance().getStudent();
             Project project = MainController.getInstance().getProject();
-            java.util.Date date = new java.util.Date();
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            StudentProjectApplication app = new StudentProjectApplication(student.username, project.projectName, "Pending", sqlDate);
+
             try {
-                app.insert();
-            } catch(SQLException e) {
+                if (!StudentProjectApplication.selectStudentProjectApplicationsForStudentProject(student.username, project.projectName).isEmpty()) {
+                    MainController.getInstance().showAlertMessage("already applied to this project");
+                } else {
+
+                    boolean valid = false;
+
+                    if (project.majorRestriction == null && project.deptRestriction == null) {
+                        valid = true;
+                    } else if (project.majorRestriction != null && project.deptRestriction == null) {
+                        valid = project.majorRestriction.equals(student.major);
+                    } else if (project.majorRestriction == null && project.deptRestriction != null) {
+                        try {
+                            valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department);
+                        } catch (SQLException ignored) {
+                        }
+                    } else if (project.majorRestriction != null && project.deptRestriction != null) {
+                        valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department) && project.majorRestriction.equals(student.major);
+                    }
+                    if (project.yearRestriction != null && !project.yearRestriction.equals(student.year)) {
+                        valid = false;
+                    }
+
+                    if (valid) {
+                        java.util.Date date = new java.util.Date();
+                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                        StudentProjectApplication app = new StudentProjectApplication(student.username, project.projectName, "Pending", sqlDate);
+                        app.insert();
+                    } else {
+                        MainController.getInstance().showAlertMessage("cannot apply to this project");
+                    }
+                }
+            } catch (SQLException e) {
                 MainController.getInstance().showAlertMessage(e.getMessage());
             }
             MainController.getInstance().changeScene("../view/FilterScreen.fxml", "Main Page");
