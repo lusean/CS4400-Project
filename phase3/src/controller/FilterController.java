@@ -92,6 +92,13 @@ public class FilterController {
     @FXML
     private void handleResetPressed() {
         table.getItems().clear();
+        titleField.clear();
+        designationBox.setValue(null);
+        majorBox.setValue(null);
+        yearBox.setValue(null);
+        categoryBox.setValue(null);
+        typeBox.setValue(null);
+        categoryList.getItems().clear();
     }
 
     @FXML
