@@ -81,7 +81,6 @@ public class DetailsController {
                 if (!StudentProjectApplication.selectStudentProjectApplicationsForStudentProject(student.username, project.projectName).isEmpty()) {
                     MainController.getInstance().showAlertMessage("already applied to this project");
                 } else {
-                    
                     boolean valid = false;
                     
                     if (project.majorRestriction == null && project.deptRestriction == null) {
@@ -89,10 +88,7 @@ public class DetailsController {
                     } else if (project.majorRestriction != null && project.deptRestriction == null) {
                         valid = project.majorRestriction.equals(student.major);
                     } else if (project.majorRestriction == null && project.deptRestriction != null) {
-                        try {
-                            valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department);
-                        } catch (SQLException ignored) {
-                        }
+                        valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department);
                     } else if (project.majorRestriction != null && project.deptRestriction != null) {
                         valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department) && project.majorRestriction.equals(student.major);
                     }
