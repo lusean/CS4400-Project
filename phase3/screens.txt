@@ -10,3 +10,5 @@ add course +
 view/apply project
 my applications -
 edit profile +
+
+if no major, can't apply

@@ -31,7 +31,7 @@ public class SearchProjectsCourses extends Entity {
         }
     }
 
-    public static List<SearchProjectsCourses> selectAllProjectsAndCourses(String titleFilter, List<String> categoryFilters, String designationFilter, String majorFilter, String yearFilter, boolean acceptProjects, boolean acceptCourses) throws SQLException {
+    public static List<SearchProjectsCourses> selectAllProjectsAndCourses(String titleFilter, List<String> categoryFilters, String designationFilter, String departmentFilter, String majorFilter, String yearFilter, boolean acceptProjects, boolean acceptCourses) throws SQLException {
         if (titleFilter.isEmpty()) {
             titleFilter = null;
         }
@@ -42,6 +42,7 @@ public class SearchProjectsCourses extends Entity {
         String designationStr = stringOrNull(designationFilter);
         String majorStr = stringOrNull(majorFilter);
         String yearStr = stringOrNull(yearFilter);
+        String departmentStr = stringOrNull(departmentFilter);
         
         String dropRetSql = "DROP TABLE IF EXISTS ret;";
         Entity.execute(dropRetSql);
@@ -73,12 +74,13 @@ public class SearchProjectsCourses extends Entity {
         }
         if (acceptProjects) {
             String sql = String.format(
-                    "INSERT INTO ret SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, ProjectCategories WHERE tmp.Category = ProjectCategories.Category AND ProjectCategories.Project = Projects.ProjectName)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND (%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction);",
+                    "INSERT INTO ret SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, ProjectCategories WHERE tmp.Category = ProjectCategories.Category AND ProjectCategories.Project = Projects.ProjectName)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND ((%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction) OR (%s IS NULL OR Projects.DepartmentRestriction IS NULL OR %s = Projects.DepartmentRestriction));",
             
                     titleStr, titleStr,
                     designationStr, designationStr,
                     yearStr, yearStr,
-                    majorStr, majorStr);
+                    majorStr, majorStr,
+                    departmentStr, departmentStr);
             
             Entity.execute(sql);
         }
