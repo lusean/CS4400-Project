@@ -60,25 +60,29 @@ public class AddCourseController {
     @FXML
     private void handleSubmitPressed() {
         if(areFieldsFilled()) {
-            Course course = new Course(numberField.getText(), nameField.getText(), instructorField.getText(),
-                    Integer.parseInt(studentField.getText()), designationBox.getSelectionModel().getSelectedItem());
+            if(studentField.getText().matches("\\d+")) {
+                Course course = new Course(numberField.getText(), nameField.getText(), instructorField.getText(),
+                        Integer.parseInt(studentField.getText()), designationBox.getSelectionModel().getSelectedItem());
 
-            try {
-                course.insert();
-                MainController.getInstance().showOKMessage("Course Successfully Added.");
-                MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
-            } catch (SQLException e) {
-                MainController.getInstance().showAlertMessage(e.getMessage());
-            }
-
-            CourseCategory courseCategory;
-            for(String s : categoryList.getItems()) {
-                courseCategory = new CourseCategory(numberField.getText(), s);
                 try {
-                    courseCategory.insert();
+                    course.insert();
+                    MainController.getInstance().showOKMessage("Course Successfully Added.");
+                    MainController.getInstance().changeScene("../view/AdminStartScreen.fxml", "Choose Functionality");
                 } catch (SQLException e) {
                     MainController.getInstance().showAlertMessage(e.getMessage());
                 }
+
+                CourseCategory courseCategory;
+                for (String s : categoryList.getItems()) {
+                    courseCategory = new CourseCategory(numberField.getText(), s);
+                    try {
+                        courseCategory.insert();
+                    } catch (SQLException e) {
+                        MainController.getInstance().showAlertMessage(e.getMessage());
+                    }
+                }
+            } else {
+                MainController.getInstance().showAlertMessage("Please enter an integer number");
             }
         } else {
             MainController.getInstance().showAlertMessage("Please fill out all of the fields");
