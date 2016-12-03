@@ -21,6 +21,10 @@ public class ProjectCategory extends Entity {
         return Entity.select("SELECT * FROM ProjectCategories;", ProjectCategory::new);
     }
     
+    public static List<ProjectCategory> selectCourseCategoriesForCourse(String projectName) throws SQLException {
+        return Entity.select(String.format("SELECT * FROM ProjectCategories WHERE Project = '%s';", projectName), ProjectCategory::new);
+    }
+    
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO ProjectCategories VALUES ('%s', '%s');", project, category));
     }
