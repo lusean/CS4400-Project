@@ -31,4 +31,9 @@ public class Course extends Entity {
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO Courses VALUES ('%s', '%s', '%s', %d, '%s');", courseNumber, courseName, instructor, estimatedStudent, designation));
     }
+
+    public static Course getCourse(String name) throws SQLException {
+        List<Course> list = Entity.select(String.format("SELECT * FROM Courses WHERE '%s' = CourseNumber;", name), Course::new);
+        return list.get(0);
+    }
 }

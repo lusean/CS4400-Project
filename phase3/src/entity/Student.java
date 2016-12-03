@@ -39,7 +39,7 @@ public class Student extends Entity {
         execute(String.format("INSERT INTO Students VALUES ('%s', '%s', %s, %s);", username, email, year == null ? "NULL" : "'" + year + "'", major == null ? "NULL" : "'" + major + "'"));
     }
 
-    public String getUsername() {
+    /*public String getUsername() {
         return username;
-    }
+    }*/
 }

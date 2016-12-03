@@ -59,7 +59,7 @@ public class MainController extends Application {
     }
 
     public Student getStudent() {
-        return getInstance().student;
+        return student;
     }
 
     public void setProject(Project p) {

@@ -17,9 +17,20 @@ public class SearchProjectsCourses extends Entity {
         this.isProject = rs.getBoolean(1);
         this.name = rs.getString(2);
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public String getIsProject() {
+        if(isProject) {
+            return "Project";
+        } else {
+            return "Course";
+        }
+    }
+
     public static List<SearchProjectsCourses> selectAllProjectsAndCourses(String titleFilter, List<String> categoryFilters, String designationFilter, String majorFilter, String yearFilter) throws SQLException {
-        System.out.println();
         if (titleFilter.isEmpty()) {
             titleFilter = null;
         }

@@ -116,6 +116,8 @@ INSERT INTO CourseCategories VALUES ('CHEM 4740', 'doing good for your neighborh
 INSERT INTO CourseCategories VALUES ('PHIL 3109', 'doing good for your neighborhood');
 INSERT INTO CourseCategories VALUES ('PHIL 3127', 'reciprocal teaching and learning');
 INSERT INTO CourseCategories VALUES ('NRE 4404', 'sustainable communities');
+INSERT INTO CourseCategories VALUES ('EAS 2750', 'doing good for your neighborhood');
+INSERT INTO CourseCategories VALUES ('EAS 2750', 'urban development');
 
 INSERT INTO Projects VALUES ('Excel Peer Support Network', 'Marnie Williams', 'mw@gatech.edu', 60, 'Excel (www.excel.gatech.edu) is a four-year, dual certificate program for students with intellectual and developmental disabilities. The Peer Support Network is designed to provide the individualized support necessary for Excel students to thrive at Georgia Tech.', 'Community', 'Computer Science', 'Senior', NULL);
 INSERT INTO Projects VALUES ('ESW Hydroponics/Urban Farming Project', 'Nicole Kinnard', 'nk@gatech.edu', 7, 'The Hydroponics/Urban Farming Project experiments with different ways to grow produce in urban areas using limited space and water resources. We investigate both soil-based and hydroponic methods of growing in order to find the most efficient, economically viable, and environmentally sustainable way to grow produce in Atlanta.', 'Sustainable Communities', NULL, 'Junior', NULL);
@@ -173,6 +175,10 @@ INSERT INTO ProjectCategories VALUES ('Solar Decathlon', 'collaborative action')
 INSERT INTO ProjectCategories VALUES ('STEMcomm', 'doing good for your neighborhood');
 INSERT INTO ProjectCategories VALUES ('Big Data Analytics for Public and Private Enterprises', 'crowd-sourced');
 INSERT INTO ProjectCategories VALUES ('Concussion Connect', 'collaborative action');
+INSERT INTO ProjectCategories VALUES ('Bee-Snap', 'adaptive learning');
+INSERT INTO ProjectCategories VALUES ('Bee-Snap', 'crowd-sourced');
+INSERT INTO ProjectCategories VALUES ('Big Data and Quantum Mechanics','reciprocal teaching and learning');
+INSERT INTO ProjectCategories VALUES ('Big Data and Quantum Mechanics', 'collaborative action');
 
 INSERT INTO Users VALUES('adevadas', 'Lion21', 1);
 INSERT INTO Users VALUES('aeubanks', 'Tiger46', 1);
@@ -221,7 +227,6 @@ INSERT INTO Students VALUES('SchCol', 'SC@gatech.edu', 'Sophomore', 'Internation
 INSERT INTO Students VALUES('HenWil', 'HenWil@gatech.edu', 'Junior', 'Architecture');
 INSERT INTO Students VALUES('WilAW', 'WilAW@outlook.com', 'Senior', 'Computer Science');
 INSERT INTO Students VALUES('carthur', 'cartur@gmail.com', NULL, 'Biochemistry');
-
 INSERT INTO StudentProjectApplications VALUES ('egerry','Sustainable Aquaponic Systems', 'Accepted', '2013-12-02');
 INSERT INTO StudentProjectApplications VALUES( 'aburr','Epic Intentions','Pending', '2014-01-29');
 INSERT INTO StudentProjectApplications VALUES('dtompins', 'Shakespeare in Prison Project', 'Rejected', '2012- 02- 13');
@@ -229,3 +234,4 @@ INSERT INTO StudentProjectApplications VALUES('dtompins', 'STEMcomm', 'Accepted'
 INSERT INTO StudentProjectApplications VALUES('WilAW','Big Data and Quantum Mechanics', 'Accepted', '2013-05-12');
 INSERT INTO StudentProjectApplications VALUES('HanHam', 'Concussion Connect', 'Pending', '2015-11-03');
 INSERT INTO StudentProjectApplications VALUES('HanHam','STEMcomm',  'Rejected','2015-10-13');
+INSERT INTO StudentProjectApplications VALUES("HenWil", "Shakespeare in Prison Project", "Accepted", "2016-03-23");

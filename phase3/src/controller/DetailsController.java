@@ -29,16 +29,16 @@ public class DetailsController {
     private void initialize() {
         if(MainController.getInstance().isCourse()) {
             applyButton.setVisible(false);
-            Course course = MainController.getInstance().getCourse();
+            /*Course course = MainController.getInstance().getCourse();
             titleField.setText(course.courseNumber);
             // NEED TO DISPLAY COURSE CATEGORIES
             descriptionField.setText(String.format("Course Name: '%s'\n Instructor: '%s'\n Designation: '%s'\n" +
                     "Category: '%s'\n Estimated number of students: '%s'", course.courseName, course.instructor,
-                    course.designation, course.estimatedStudent));
-        } else {
+                    course.designation, course.estimatedStudent));*/
+        } /*else {
             Project project = MainController.getInstance().getProject();
             titleField.setText(project.projectName);
-        }
+        }*/
     }
 
     @FXML
