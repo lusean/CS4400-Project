@@ -31,15 +31,7 @@ public class ApplicationController {
         majorCol.setCellValueFactory(new PropertyValueFactory<AdminViewApplication, String>("studentMajor"));
         yearCol.setCellValueFactory(new PropertyValueFactory<AdminViewApplication, String>("studentYear"));
         statusCol.setCellValueFactory(new PropertyValueFactory<AdminViewApplication, String>("applyStatus"));
-        try {
-            for (AdminViewApplication ava : AdminViewApplication.selectAllAdminViewApplications()) {
-                data.add(ava);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error building data");
-        }
-        table.getItems().setAll(data);
+        updateTable();
     }
 
     @FXML
@@ -53,7 +45,7 @@ public class ApplicationController {
         try {
             if (ava.getApplyStatus().equalsIgnoreCase("Pending")) {
                 ava.updateApplyStatus("Rejected");
-                initialize();
+                updateTable();
             }
         } catch (SQLException e) {
             e.printStackTrace();;
@@ -66,7 +58,7 @@ public class ApplicationController {
         try {
             if (ava.getApplyStatus().equalsIgnoreCase("Pending")) {
                 ava.updateApplyStatus("Accepted");
-                initialize();
+                updateTable();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,6 +66,15 @@ public class ApplicationController {
     }
 
     private void updateTable() {
-
+        try {
+            data.clear();
+            for (AdminViewApplication ava : AdminViewApplication.selectAllAdminViewApplications()) {
+                data.add(ava);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error building data");
+        }
+        table.getItems().setAll(data);
     }
 }
