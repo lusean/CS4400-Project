@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilterController {
@@ -68,8 +69,8 @@ public class FilterController {
     @FXML
     private void handleFilterPressed() {
         try {
-            List<SearchProjectsCourses> searches = SearchProjectsCourses.selectAllProjectsAndCourses(titleField.getText(), null, designationBox.getSelectionModel().getSelectedItem(), majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem(), null);
-            
+            List<SearchProjectsCourses> searches = SearchProjectsCourses.selectAllProjectsAndCourses(titleField.getText(), new ArrayList<>(), designationBox.getSelectionModel().getSelectedItem(), majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem());
+            System.out.println(searches.size());
         } catch (SQLException e) {
             e.printStackTrace();
             MainController.getInstance().showAlertMessage(e.getMessage());
