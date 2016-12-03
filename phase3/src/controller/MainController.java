@@ -17,7 +17,7 @@ public class MainController extends Application {
 
     private Stage primaryStage;
     private static MainController mainController;
-    private static Student student;
+    private Student student;
     private Project project;
     private Course course;
     private boolean isCourse;
@@ -58,8 +58,8 @@ public class MainController extends Application {
         this.student = student;
     }
 
-    public static Student getStudent() {
-        return student;
+    public Student getStudent() {
+        return getInstance().student;
     }
 
     public void setProject(Project p) {

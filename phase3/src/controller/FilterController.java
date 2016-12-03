@@ -1,15 +1,13 @@
 package controller;
 
-import entity.Category;
-import entity.Designation;
-import entity.Major;
-import entity.Year;
+import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class FilterController {
 
@@ -69,7 +67,13 @@ public class FilterController {
 
     @FXML
     private void handleFilterPressed() {
-
+        try {
+            List<SearchProjectsCourses> searches = SearchProjectsCourses.selectAllProjectsAndCourses(titleField.getText(), null, designationBox.getSelectionModel().getSelectedItem(), majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem(), null);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            MainController.getInstance().showAlertMessage(e.getMessage());
+        }
     }
 
     @FXML
