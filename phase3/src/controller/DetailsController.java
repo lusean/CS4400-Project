@@ -74,41 +74,46 @@ public class DetailsController {
     @FXML
     private void handleApplyPressed() {
         if (MainController.getInstance().isProfileUpdated()) {
-            
             Student student = MainController.getInstance().getStudent();
             Project project = MainController.getInstance().getProject();
             
-            boolean valid = false;
-            
-            if (project.majorRestriction == null && project.deptRestriction == null) {
-                valid = true;
-            } else if (project.majorRestriction != null && project.deptRestriction == null) {
-                valid = project.majorRestriction.equals(student.major);
-            } else if (project.majorRestriction == null && project.deptRestriction != null) {
-                try {
-                    valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department);
-                } catch (SQLException ignored) {}
-            } else if (project.majorRestriction != null && project.deptRestriction != null) {
-                try {
-                    valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department) && project.majorRestriction.equals(student.major);
-                } catch (SQLException ignored) {}
-            }
-            if (project.yearRestriction != null && !project.yearRestriction.equals(student.year)) {
-                valid = false;
-            }
-            
-            if (valid) {
-                java.util.Date date = new java.util.Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                StudentProjectApplication app = new StudentProjectApplication(student.username, project.projectName, "Pending", sqlDate);
-                try {
-                    app.insert();
-                } catch (SQLException e) {
-                    MainController.getInstance().showAlertMessage(e.getMessage());
+            try {
+                if (!StudentProjectApplication.selectStudentProjectApplicationsForStudentProject(student.username, project.projectName).isEmpty()) {
+                    MainController.getInstance().showAlertMessage("already applied to this project");
+                } else {
+                    
+                    boolean valid = false;
+                    
+                    if (project.majorRestriction == null && project.deptRestriction == null) {
+                        valid = true;
+                    } else if (project.majorRestriction != null && project.deptRestriction == null) {
+                        valid = project.majorRestriction.equals(student.major);
+                    } else if (project.majorRestriction == null && project.deptRestriction != null) {
+                        try {
+                            valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department);
+                        } catch (SQLException ignored) {
+                        }
+                    } else if (project.majorRestriction != null && project.deptRestriction != null) {
+                        valid = project.deptRestriction.equals(Major.selectMajor(student.major).get(0).department) && project.majorRestriction.equals(student.major);
+                    }
+                    if (project.yearRestriction != null && !project.yearRestriction.equals(student.year)) {
+                        valid = false;
+                    }
+                    
+                    if (valid) {
+                        java.util.Date date = new java.util.Date();
+                        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                        StudentProjectApplication app = new StudentProjectApplication(student.username, project.projectName, "Pending", sqlDate);
+                        app.insert();
+                    } else {
+                        MainController.getInstance().showAlertMessage("cannot apply to this project");
+                    }
                 }
-            } else {
-                MainController.getInstance().showAlertMessage("cannot apply to this project");
+            } catch (SQLException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage());
             }
+            
+            
             MainController.getInstance().changeScene("../view/FilterScreen.fxml", "Main Page");
         } else {
             MainController.getInstance().showAlertMessage("Please update your profile to include a year and major");
