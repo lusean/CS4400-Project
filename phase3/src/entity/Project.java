@@ -41,7 +41,7 @@ public class Project extends Entity {
     }
 
     public static Project getProject(String name) throws SQLException {
-        List<Project> list = Entity.select(String.format("SELECT * FROM Projects WHERE '%s' = ProjectName;", name), Course::new);
+        List<Project> list = Entity.select(String.format("SELECT * FROM Projects WHERE '%s' = ProjectName;", name), Project::new);
         return list.get(0);
     }
 }
