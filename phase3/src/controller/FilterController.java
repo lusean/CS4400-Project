@@ -77,7 +77,7 @@ public class FilterController {
         try {
             List<SearchProjectsCourses> list = SearchProjectsCourses.selectAllProjectsAndCourses(titleField.getText(),
                     categoryList.getItems(), designationBox.getSelectionModel().getSelectedItem(),
-                    majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem(), !typeBox.getSelectionModel().getSelectedItem().equals("Course"), !typeBox.getSelectionModel().getSelectedItem().equals("Project"));
+                    majorBox.getSelectionModel().getSelectedItem(), yearBox.getSelectionModel().getSelectedItem(), !"Course".equals(typeBox.getSelectionModel().getSelectedItem()), !"Project".equals(typeBox.getSelectionModel().getSelectedItem()));
             for (SearchProjectsCourses s : list) {
                 filterData.add(s);
             }
