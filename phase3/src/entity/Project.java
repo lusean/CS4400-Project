@@ -39,4 +39,9 @@ public class Project extends Entity {
     public void insert() throws SQLException {
         execute(String.format("INSERT INTO Projects VALUES ('%s', '%s', '%s', %d, '%s', '%s', %s, %s, %s);", projectName, advisorName, advisorEmail, estimatedStudents, description, designation, majorRestriction == null ? "NULL" : "'" + majorRestriction + "'", yearRestriction == null ? "NULL" : "'" + yearRestriction + "'", deptRestriction == null ? "NULL" : "'" + deptRestriction + "'"));
     }
+
+    public static Project getProject(String name) throws SQLException {
+        List<Project> list = Entity.select(String.format("SELECT * FROM Projects WHERE '%s' = ProjectName;", name), Course::new);
+        return list.get(0);
+    }
 }

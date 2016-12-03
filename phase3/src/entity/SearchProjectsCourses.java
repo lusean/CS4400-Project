@@ -17,8 +17,20 @@ public class SearchProjectsCourses extends Entity {
         this.isProject = rs.getBoolean(1);
         this.name = rs.getString(2);
     }
-    
-    public static List<SearchProjectsCourses> selectAllProjectsAndCourses(String titleFilter, List<String> categoryFilters, String designationFilter, String majorFilter, String yearFilter, String departmentRestriction) throws SQLException {
+
+    public String getName() {
+        return name;
+    }
+
+    public String getIsProject() {
+        if(isProject) {
+            return "Project";
+        } else {
+            return "Course";
+        }
+    }
+
+    public static List<SearchProjectsCourses> selectAllProjectsAndCourses(String titleFilter, List<String> categoryFilters, String designationFilter, String majorFilter, String yearFilter) throws SQLException {
         if (titleFilter.isEmpty()) {
             titleFilter = null;
         }
@@ -35,7 +47,6 @@ public class SearchProjectsCourses extends Entity {
         String designationStr = stringOrNull(designationFilter);
         String majorStr = stringOrNull(majorFilter);
         String yearStr = stringOrNull(yearFilter);
-        String departmentStr = stringOrNull(departmentRestriction);
         
         String sql = String.format(
                 "SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (%s IS NULL OR (Projects.ProjectName, %s) IN (SELECT * FROM ProjectCategories)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND ((%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction) OR (%s IS NULL OR Projects.DepartmentRestriction IS NULL OR %s = Projects.DepartmentRestriction)) \n" +
@@ -47,7 +58,6 @@ public class SearchProjectsCourses extends Entity {
                 designationStr, designationStr,
                 yearStr, yearStr,
                 majorStr, majorStr,
-                departmentStr, departmentStr,
                 
                 titleStr, titleStr,
                 categoryStr, categoryStr,
