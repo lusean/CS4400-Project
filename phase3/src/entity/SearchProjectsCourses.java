@@ -32,6 +32,9 @@ public class SearchProjectsCourses extends Entity {
     }
 
     public static List<SearchProjectsCourses> selectAllProjectsAndCourses(String titleFilter, List<String> categoryFilters, String designationFilter, String departmentFilter, String majorFilter, String yearFilter, boolean acceptProjects, boolean acceptCourses) throws SQLException {
+        if (departmentFilter != null || majorFilter != null || yearFilter != null) {
+            acceptCourses = false;
+        }
         if (titleFilter.isEmpty()) {
             titleFilter = null;
         }
