@@ -1,9 +1,6 @@
 package controller;
 
-import entity.Course;
-import entity.Project;
-import entity.Student;
-import entity.StudentProjectApplication;
+import entity.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -34,12 +31,40 @@ public class DetailsController {
             Course course = MainController.getInstance().getCourse();
             titleField.setText(course.courseNumber);
             // NEED TO DISPLAY COURSE CATEGORIES
+            String str = "";
+            try {
+                List<CourseCategory> list = CourseCategory.selectCourseCategoriesForCourse(course.courseNumber);
+                for (int i = 0; i < list.size(); i++) {
+                    if (i != 0) {
+                        str += ", ";
+                    }
+                    str += list.get(i).category;
+                }
+            } catch (SQLException e){
+                MainController.getInstance().showAlertMessage(e.getMessage());
+            }
             descriptionField.setText(String.format("Course Name: '%s'\n Instructor: '%s'\n Designation: '%s'\n" +
                     "Category: '%s'\n Estimated number of students: '%s'", course.courseName, course.instructor,
-                    course.designation, course.estimatedStudent));
+                    course.designation, str, course.estimatedStudent));
         } else {
             Project project = MainController.getInstance().getProject();
             titleField.setText(project.projectName);
+            String str = "";
+            try {
+                List<ProjectCategory> list = ProjectCategory.selectCourseCategoriesForCourse(project.projectName);
+                for (int i = 0; i < list.size(); i++) {
+                    if (i != 0) {
+                        str += ", ";
+                    }
+                    str += list.get(i).category;
+                }
+            } catch (SQLException e) {
+                MainController.getInstance().showAlertMessage(e.getMessage());
+            }
+            String blank = "";
+            descriptionField.setText(String.format("Advisor: '%s'\n Description: '%s'\n Designation: '%s'\n" +
+                    "Category: '%s'\n Requirements: '%s'\n Estimated number of students '%s'", project.advisorName,
+                    project.description, project.designation, str, blank, project.estimatedStudents));
         }
     }
 
