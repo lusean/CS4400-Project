@@ -1,0 +1,129 @@
+UPDATE StudentProjectApplications 
+SET ApplyStatus = [ApplyStatus] 
+WHERE Student = [Student] AND Project = [Project];
+
+SELECT * FROM ApplyStatuses;
+
+SELECT * FROM Categories;
+
+SELECT * FROM Courses;
+
+INSERT INTO Courses 
+VALUES ([CourseNumber], [CourseName],[Instructor],[EstimatedStudent],[Designation]);
+
+SELECT * FROM Courses WHERE [CourseName] = CourseName;
+
+SELECT * FROM CourseCategories;
+
+SELECT * FROM CourseCategories WHERE Course = [CourseName];
+
+INSERT INTO CourseCategories VALUES ([Course], [Category]);
+
+SELECT * FROM Departments;
+
+SELECT * FROM Designations;
+
+SELECT * FROM Majors;
+
+SELECT * FROM Majors WHERE MajorName = [MajorName];
+
+SELECT Project, COUNT(*) AS Cnt 
+FROM StudentProjectApplications 
+GROUP BY Project 
+ORDER BY Cnt 
+DESC LIMIT 10;
+
+SELECT * FROM Projects;
+
+INSERT INTO Projects 
+VALUES ([ProjectName], [AdvisorName], [AdvisorEmail], [EstimatedStudents], [Description], [Designation], [MajorRestriction], [YearRestiction], [DepartmentRestiction]);
+
+SELECT * FROM Projects WHERE [ProjectName] = ProjectName;
+
+SELECT * FROM ProjectCategories;
+
+SELECT * FROM ProjectCategories WHERE Project = [ProjectName];
+
+INSERT INTO ProjectCategories VALUES ([Project], [Category]);
+
+
+===============(For Searching Projects and Courses)========================
+DROP TABLE IF EXISTS ret;
+CREATE TABLE IF NOT EXISTS ret (IsProject INT, Name varchar(100));
+
+DROP TABLE IF EXISTS tmp;
+CREATE TABLE IF NOT EXISTS tmp (Category varchar(100));
+
+"INSERT INTO tmp VALUES (NULL)"
+
+INSERT INTO ret 
+SELECT false as IsProject, Courses.CourseName 
+FROM Courses 
+WHERE ( IS NULL OR Courses.CourseName LIKE %s) 
+AND (
+	0 = (SELECT COUNT(Category) FROM tmp) 
+	OR EXISTS (
+		SELECT * FROM tmp, CourseCategories 
+		WHERE tmp.Category = CourseCategories.Category 
+		AND CourseCategories.Course = Courses.CourseNumber)
+	) 
+AND (%s IS NULL 
+	OR Courses.Designation IS NULL 
+	OR %s = Courses.Designation)
+;                                                  ****CHECK %S **** (Search Title for projects or courses, Search Title,Designation,Designation)
+
+ INSERT INTO ret 
+ SELECT true as IsProject, Projects.ProjectName 
+ FROM Projects 
+ WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) 
+ AND (0 = 
+ 	(SELECT COUNT(Category) FROM tmp) 
+ 	OR EXISTS 
+ 		(SELECT * FROM tmp, ProjectCategories 
+ 		WHERE tmp.Category = ProjectCategories.Category 
+ 		AND ProjectCategories.Project = Projects.ProjectName)) 
+ AND (%s IS NULL 
+ 	OR Projects.Designation IS NULL 
+ 	OR %s = Projects.Designation) 
+ AND (%s IS NULL 
+ 	OR Projects.YearRestriction IS NULL 
+ 	OR %s = Projects.YearRestriction) 
+ AND (
+ 	(%s IS NULL OR Projects.MajorRestriction IS NULL 
+ 		OR %s = Projects.MajorRestriction) 
+ 	OR (%s IS NULL 
+ 		OR Projects.DepartmentRestriction IS NULL 
+ 		OR %s = Projects.DepartmentRestriction)
+ 	)
+ ; 	  
+
+  **********Check %S ********(CourseTitle,CourseTitle,Designation, Designaiton,Year,Year,Major,Major,Department,Department)
+
+SELECT * FROM ret;
+
+=========================================== DONE ===================================================================
+
+
+UPDATE Students SET Year = [Year] WHERE Username = [Username];
+
+UPDATE Students SET Major = [Major] WHERE Username = [Username];
+
+SELECT * FROM Students;
+
+INSERT INTO Students VALUES ([Username],[Email],[Year],[Major]);
+
+SELECT * FROM StudentProjectApplications;
+
+SELECT * FROM StudentProjectApplications WHERE Student =[Username];
+
+SELECT * FROM StudentProjectApplications WHERE Student = [Username] AND Project = [Project];
+
+SELECT * FROM StudentProjectApplications WHERE ApplyStatus = 'Accepted';
+
+INSERT INTO StudentProjectApplications VALUES ([Student], [Project], [ApplyStatus], [ApplyDate]);
+
+UPDATE StudentProjectApplications SET ApplyStatus = [ApplyStatus] WHERE Student = [Student] AND Project = [Project];
+
+SELECT * FROM Users;
+
+INSERT INTO Users VALUES ([Username], [Password], [IsAdmin]);", username, password, isAdmin;
