@@ -54,16 +54,13 @@ public class ApplicationReport extends Entity {
         String str = "";
         String[] array = {topMajor1, topMajor2, topMajor3};
         for (String s : array) {
-            boolean firstEntry = true;
-            if (!firstEntry && s != null) {
-                str += ", ";
-            }
             if (s != null) {
+                if (!str.isEmpty()) {
+                    str += "; ";
+                }
                 str += s;
-                firstEntry = false;
             }
         }
-        str = str.substring(0, str.length()-2);
         return str;
     }
 }

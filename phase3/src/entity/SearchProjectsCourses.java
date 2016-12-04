@@ -77,7 +77,7 @@ public class SearchProjectsCourses extends Entity {
         }
         if (acceptProjects) {
             String sql = String.format(
-                    "INSERT INTO ret SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, ProjectCategories WHERE tmp.Category = ProjectCategories.Category AND ProjectCategories.Project = Projects.ProjectName)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND ((%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction) OR (%s IS NULL OR Projects.DepartmentRestriction IS NULL OR %s = Projects.DepartmentRestriction));",
+                    "INSERT INTO ret SELECT true as IsProject, Projects.ProjectName FROM Projects WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) AND (0 = (SELECT COUNT(Category) FROM tmp) OR EXISTS (SELECT * FROM tmp, ProjectCategories WHERE tmp.Category = ProjectCategories.Category AND ProjectCategories.Project = Projects.ProjectName)) AND (%s IS NULL OR Projects.Designation IS NULL OR %s = Projects.Designation) AND (%s IS NULL OR Projects.YearRestriction IS NULL OR %s = Projects.YearRestriction) AND (%s IS NULL OR Projects.MajorRestriction IS NULL OR %s = Projects.MajorRestriction) AND (%s IS NULL OR Projects.DepartmentRestriction IS NULL OR %s = Projects.DepartmentRestriction);",
             
                     titleStr, titleStr,
                     designationStr, designationStr,

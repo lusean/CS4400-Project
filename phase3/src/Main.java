@@ -10,33 +10,9 @@ public class Main {
     
     public static void main(String[] args) throws Exception {
         Entity.initializeSQL();
-        System.out.print(System.getProperty("user.dir"));
         executeDrop();
         executeCreate();
         executeInsert();
-        /*StudentProjectApplication.selectAllStudentProjectApplications().forEach(spa -> {
-            System.out.println(spa.project);
-            System.out.println(spa.student);
-            System.out.println(spa.applyStatus);
-            System.out.println();
-        });
-    
-        System.out.println("report:");
-        System.out.println();
-    
-        ApplicationReport.getApplicationReports().forEach(ar -> {
-            System.out.println(ar.projectName);
-            System.out.println(ar.numApplicants);
-            System.out.println(ar.acceptRate);
-            System.out.println(ar.topMajor1);
-            System.out.println(ar.topMajor2);
-            System.out.println(ar.topMajor3);
-            System.out.println();
-        });
-        
-        Entity.endSQL();*/
-
-//        testSQL();
     }
     
     private static void testSQL() throws SQLException {
@@ -44,7 +20,7 @@ public class Main {
         
         executeDrop();
         executeCreate();
-//            executeDelete();
+//        executeDelete();
         executeInsert();
         
         new User("admin1", "p", true).insert();
@@ -127,19 +103,19 @@ public class Main {
     }
     
     private static void executeDrop() throws SQLException {
-        Entity.execute(readFile("phase3/drop.sql"));
+        Entity.execute(readFile("drop.sql"));
     }
     
     private static void executeCreate() throws SQLException {
-        Entity.execute(readFile("phase3/create.sql"));
+        Entity.execute(readFile("create.sql"));
     }
     
     private static void executeDelete() throws SQLException {
-        Entity.execute(readFile("phase3/delete.sql"));
+        Entity.execute(readFile("delete.sql"));
     }
     
     private static void executeInsert() throws SQLException {
-        Entity.execute(readFile("phase3/insert.sql"));
+        Entity.execute(readFile("insert.sql"));
     }
     
     private static String readFile(String filename) {

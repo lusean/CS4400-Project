@@ -205,7 +205,7 @@ INSERT INTO Users VALUES('AndrJohn', 'Olive',0);
 INSERT INTO Users VALUES('SchCol', 'Merigold',0);
 INSERT INTO Users VALUES('HenWil', 'White',0);
 INSERT INTO Users VALUES('WilAW', 'Pink',0);
-INSERT INTO Users VALUES('carthur', 'Purple',0)
+INSERT INTO Users VALUES('carthur', 'Purple',0);
 
 INSERT INTO Students VALUES('jcalhoun','jc@gatech.edu', 'Sophomore', NULL);
 INSERT INTO Students VALUES('jadams', 'jadams@gatech.edu', 'Freshman', 'Chemistry');
@@ -229,7 +229,7 @@ INSERT INTO Students VALUES('WilAW', 'WilAW@outlook.com', 'Senior', 'Computer Sc
 INSERT INTO Students VALUES('carthur', 'cartur@gmail.com', NULL, 'Biochemistry');
 INSERT INTO StudentProjectApplications VALUES ('egerry','Sustainable Aquaponic Systems', 'Accepted', '2013-12-02');
 INSERT INTO StudentProjectApplications VALUES( 'aburr','Epic Intentions','Pending', '2014-01-29');
-INSERT INTO StudentProjectApplications VALUES('dtompins', 'Shakespeare in Prison Project', 'Rejected', '2012- 02- 13');
+INSERT INTO StudentProjectApplications VALUES('dtompins', 'Shakespeare in Prison Project', 'Rejected', '2012-02-13');
 INSERT INTO StudentProjectApplications VALUES('dtompins', 'STEMcomm', 'Accepted', '2012-02-13');
 INSERT INTO StudentProjectApplications VALUES('WilAW','Big Data and Quantum Mechanics', 'Accepted', '2013-05-12');
 INSERT INTO StudentProjectApplications VALUES('HanHam', 'Concussion Connect', 'Pending', '2015-11-03');
