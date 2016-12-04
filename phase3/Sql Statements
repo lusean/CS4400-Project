@@ -1,6 +1,26 @@
+/*
+////////////////////////////////////////////////////////////////////////////////////
+
+
+[    ] Indicates variable values with what the value inside represents
+
+ex. [ApplyStatus] indicates a variable with a value related to the students application status
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+*/
+
+
 UPDATE StudentProjectApplications 
 SET ApplyStatus = [ApplyStatus] 
 WHERE Student = [Student] AND Project = [Project];
+==========Example===========
+
+UPDATE StudentProjectApplications 
+SET ApplyStatus = 'Accepted'
+WHERE Student = 'egerry' AND Project ='Solar Decathlon';
+
+=============================
 
 SELECT * FROM ApplyStatuses;
 
@@ -8,16 +28,41 @@ SELECT * FROM Categories;
 
 SELECT * FROM Courses;
 
+
 INSERT INTO Courses 
 VALUES ([CourseNumber], [CourseName],[Instructor],[EstimatedStudent],[Designation]);
+==========Example============
+
+INSERT INTO Courses 
+VALUES ('ACCT 2101', 'Accounting','Shankar Venkataraman', 30 ,'Community';
+
+=============================
+
 
 SELECT * FROM Courses WHERE [CourseName] = CourseName;
+=========Example=============
+
+SELECT * FROM Courses WHERE 'Accounting' = CourseName;
+
+=============================
 
 SELECT * FROM CourseCategories;
 
+
 SELECT * FROM CourseCategories WHERE Course = [CourseName];
+=========Example=============
+
+Select * FROM CourseCategories WHERE Course = 'Accounting';
+
+=============================
+
 
 INSERT INTO CourseCategories VALUES ([Course], [Category]);
+=========Example=============
+
+INSERT INTO CourseCategories VALUES ('Accounting', 'urban development');
+
+=============================
 
 SELECT * FROM Departments;
 
@@ -25,7 +70,13 @@ SELECT * FROM Designations;
 
 SELECT * FROM Majors;
 
+
 SELECT * FROM Majors WHERE MajorName = [MajorName];
+=========Example=============
+
+SELECT * FROM Majors WHERE MajorName = 'Civil Engineering';
+
+=============================
 
 SELECT Project, COUNT(*) AS Cnt 
 FROM StudentProjectApplications 
@@ -35,23 +86,49 @@ DESC LIMIT 10;
 
 SELECT * FROM Projects;
 
+
 INSERT INTO Projects 
 VALUES ([ProjectName], [AdvisorName], [AdvisorEmail], [EstimatedStudents], [Description], [Designation], [MajorRestriction], [YearRestiction], [DepartmentRestiction]);
+=========Example=============
+
+INSERT INTO Projects 
+VALUES ('IPads For Kids', 'Steve Jobs', 'SJ@gatech.edu', 1, 'Think of the Children.' , 'Sustainable Communities' , 'Computer Engineering' , 'Junior', 'Engineering');
+
+==============================
+
 
 SELECT * FROM Projects WHERE [ProjectName] = ProjectName;
+=========Example==============
+
+SELECT * FROM Projects WHERE 'IPads For Kids' = ProjectName;
+
+==============================
 
 SELECT * FROM ProjectCategories;
 
+
 SELECT * FROM ProjectCategories WHERE Project = [ProjectName];
+=========Example==============
+
+SELECT * FROM ProjectCategories WHERE Project = 'IPads For Kids';
+
+==============================
+
 
 INSERT INTO ProjectCategories VALUES ([Project], [Category]);
+=========Example==============
 
+INSERT INTO ProjectCategories VALUES ('IPads For Kids', 'doing good for your neighborhood');
+
+==============================
 
 ===============(For Searching Projects and Courses)========================
 DROP TABLE IF EXISTS ret;
+
 CREATE TABLE IF NOT EXISTS ret (IsProject INT, Name varchar(100));
 
 DROP TABLE IF EXISTS tmp;
+
 CREATE TABLE IF NOT EXISTS tmp (Category varchar(100));
 
 "INSERT INTO tmp VALUES (NULL)"
@@ -59,7 +136,7 @@ CREATE TABLE IF NOT EXISTS tmp (Category varchar(100));
 INSERT INTO ret 
 SELECT false as IsProject, Courses.CourseName 
 FROM Courses 
-WHERE ( IS NULL OR Courses.CourseName LIKE %s) 
+WHERE ([Title Search Entry] IS NULL OR Courses.CourseName LIKE %[TItle Search Entry]) 
 AND (
 	0 = (SELECT COUNT(Category) FROM tmp) 
 	OR EXISTS (
@@ -67,63 +144,104 @@ AND (
 		WHERE tmp.Category = CourseCategories.Category 
 		AND CourseCategories.Course = Courses.CourseNumber)
 	) 
-AND (%s IS NULL 
+AND ([Designation] IS NULL 
 	OR Courses.Designation IS NULL 
-	OR %s = Courses.Designation)
-;                                                  ****CHECK %S **** (Search Title for projects or courses, Search Title,Designation,Designation)
+	OR [Designation] = Courses.Designation)
+;                                                  
+
 
  INSERT INTO ret 
  SELECT true as IsProject, Projects.ProjectName 
  FROM Projects 
- WHERE (%s IS NULL OR Projects.ProjectName LIKE %s) 
+ WHERE ([Title Search Entry] IS NULL OR Projects.ProjectName LIKE [Title Search Entry]) 
  AND (0 = 
  	(SELECT COUNT(Category) FROM tmp) 
  	OR EXISTS 
  		(SELECT * FROM tmp, ProjectCategories 
  		WHERE tmp.Category = ProjectCategories.Category 
  		AND ProjectCategories.Project = Projects.ProjectName)) 
- AND (%s IS NULL 
+ AND ([Designation] IS NULL 
  	OR Projects.Designation IS NULL 
- 	OR %s = Projects.Designation) 
- AND (%s IS NULL 
+ 	OR [Designation] = Projects.Designation) 
+ AND ([Year] IS NULL 
  	OR Projects.YearRestriction IS NULL 
- 	OR %s = Projects.YearRestriction) 
+ 	OR [Year] = Projects.YearRestriction) 
  AND (
- 	(%s IS NULL OR Projects.MajorRestriction IS NULL 
- 		OR %s = Projects.MajorRestriction) 
- 	OR (%s IS NULL 
+ 	([Major] IS NULL OR Projects.MajorRestriction IS NULL 
+ 		OR [Major] = Projects.MajorRestriction) 
+ 	OR ([Department] IS NULL 
  		OR Projects.DepartmentRestriction IS NULL 
- 		OR %s = Projects.DepartmentRestriction)
+ 		OR [Department] = Projects.DepartmentRestriction)
  	)
  ; 	  
 
-  **********Check %S ********(CourseTitle,CourseTitle,Designation, Designaiton,Year,Year,Major,Major,Department,Department)
-
 SELECT * FROM ret;
 
-=========================================== DONE ===================================================================
+========================================================================================
 
 
 UPDATE Students SET Year = [Year] WHERE Username = [Username];
+=========Example==============
+
+UPDATE Students SET Year = 'Junior' WHERE Username = 'egerry';
+
+==============================
 
 UPDATE Students SET Major = [Major] WHERE Username = [Username];
+=========Example==============
+
+UPDATE Students SET Major = 'Economics' WHERE Username = 'egerry';
+
+==============================
 
 SELECT * FROM Students;
 
 INSERT INTO Students VALUES ([Username],[Email],[Year],[Major]);
+=========Example==============
+
+INSERT INTO Students VALUES ('BJohn', 'BsJohn@gatech.edu','Freshman', 'Physics');
+
+==============================
 
 SELECT * FROM StudentProjectApplications;
 
 SELECT * FROM StudentProjectApplications WHERE Student =[Username];
+==========Example=============
+
+SELECT * FROM StudentProjectApplications WHERE Student ='BJohn';
+
+==============================
 
 SELECT * FROM StudentProjectApplications WHERE Student = [Username] AND Project = [Project];
+==========Example=============
+
+SELECT * FROM StudentProjectApplications WHERE Student = 'BJohn' AND Project = 'IPads For Kids';
+
+==============================
+
 
 SELECT * FROM StudentProjectApplications WHERE ApplyStatus = 'Accepted';
 
 INSERT INTO StudentProjectApplications VALUES ([Student], [Project], [ApplyStatus], [ApplyDate]);
+==========Example=============
+
+INSERT INTO StudentProjectApplications VALUES ('BJohn', 'IPads For Kids', 'Pending', '2016-01-01');
+
+==============================
+
 
 UPDATE StudentProjectApplications SET ApplyStatus = [ApplyStatus] WHERE Student = [Student] AND Project = [Project];
+=========Example==============
+
+UPDATE StudentProjectApplications SET ApplyStatus = 'Approved' WHERE Student = 'BJohn' AND Project = 'IPads For Kids';
+
+===============================
 
 SELECT * FROM Users;
 
-INSERT INTO Users VALUES ([Username], [Password], [IsAdmin]);", username, password, isAdmin;
+INSERT INTO Users VALUES ([Username], [Password], [IsAdmin]);
+========Example================
+
+INSERT INTO Users VALUES ('BJohn', 'IAMB', 0)
+
+===============================
